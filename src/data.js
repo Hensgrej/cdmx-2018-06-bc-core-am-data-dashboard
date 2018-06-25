@@ -1,22 +1,26 @@
 const getCampuses = () => {
     let request = new XMLHttpRequest();
     //Live API de Laboratoria
-    request.open('GET', 'https://laboratoria-la-staging.firebaseapp.com/campuses', true);
-    request.onload = function() {
+    request.open('GET', "https://api.laboratoria.la/campuses", true);
+    request.onload =() => {
         //Pasamos los datos a un objeto Javascript
-        let data = JSON.parse(this.response);
+        let data = JSON.parse(request.response);
         if (request.status >= 200 && request.status < 400) {
             //Loop de objeto
+            let contador = 1;
             data.forEach(campuses => {
-                //Para cada sede, se crea un botón
-                let btn = document.createElement("BUTTON");
-                //En cada iteración, se le agregar el nombre de la sede.
-                let txt = document.createTextNode(campuses.name);
-                //Los unimos
-                btn.appendChild(txt);
-                //Unimos el botón al body del HTML
-                document.body.appendChild(btn);
-
+                if (campuses.id === "aqp") {
+                    btnAqp.innerHTML = campuses.name;
+                } else if (campuses.id=== "cdmx") {
+                    btnCdmx.innerHTML = campuses.name;
+                } else if (campuses.id === "lim") {
+                    btnLim.innerHTML = campuses.name;
+                } else if (campuses.id === "scl") {
+                    btnScl.innerHTML = campuses.name;
+                } else if (campuses.id === "spl") {
+                    btnSpl.innerHTML = campuses.name;
+                }
+                //console.log(campuses.name);
             });
         } else {
             console.log('error');
@@ -24,8 +28,29 @@ const getCampuses = () => {
     }
     request.send();
 }
+// template string.
+// if id y start tienen cdmx y 2017, que sea generacion cuarta.
+// que se cree un textNode al lado del boton Ciudad de México con esta info.
 
-/*const getGenerations = () => {
+const getGenerations = () => {
     let secRequest = new XMLHttpRequest();
-    secRequest.open('GET', '')
-}*/
+    secRequest.open('GET', 'https://api.laboratoria.la/cohorts', true);
+    secRequest.onload = () => {
+        let secData = JSON.parse(secRequest.response);
+        if (secRequest.status >= 200 && secRequest.status < 400) {
+            secData.forEach(end => {
+                if(end === "2016" && id === "aqp" || end === "2017" && id === "aqp" || end === "2018" && id === "aqp") {
+                    let secBtn = document.createElement("BUTTON");
+                    let secTxt = document.createTextNode(end);
+                    secBtn.appendChild(secTxt);
+                    document.body.appendChild(secBtn);   
+                    }
+                })
+        } else {
+            console.log('error');
+        }
+    }
+    secRequest.send();
+}
+
+//if()
