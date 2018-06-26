@@ -44,6 +44,8 @@ Mediante nuestras entrevistas, pudimos rescatar los siguientes datos:
 
 # Funcionalidad
 
+### Diagrama de Flujo
+![img]()
 ### Razonamiento
 
 Requerimientos según los test unitarios:
