@@ -1,0 +1,86 @@
+body {
+    color: #2b2b2b;
+    font-family: museo-sans, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 100;
+    /*font-size: 16px;*/
+    line-height: 145%;
+    margin: 0%;
+    padding: 0%;
+}
+
+h2 {
+    position: relative;
+    font-family: 'Raleway';
+    letter-spacing: 4px;
+    font-size: 1.5vw !important;
+    color: white !important;
+    text-align: center;
+    background-color: rgba(255, 165, 0);
+}
+
+img {
+    width: 200px;
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 40px;
+}
+
+p {
+    position: relative;
+    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.3px;
+    color: black;
+    text-align: center;
+    font-size: 1vw;
+    top: 2.7vw !important;
+}
+
+input {
+    top: 0.7vw;
+    width: 15vw !important;
+    margin: 10px !important;
+    left: 25%;
+    align-items: center;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1vw !important;
+}
+
+button {
+    position: relative;
+    margin-top: 0.5vw !important;
+    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    left: 45%;
+    align-items: center;
+    display: block;
+    width: 100px;
+    border: none;
+    border-radius: 4px !important;
+    font-size: 1vw !important;
+}
+
+#btnSizing {
+    width: 10vw !important;
+    background-color: white !important;
+}
+
+.w3-container {
+    position: relative;
+    width: 25vw;
+    margin-top: 0.5vw;
+    left: 37% !important;
+}
+
+.container-fluid {
+    padding: 5px;
+    background-color: rgba(255, 165, 0);
+}
+
+.w3-container {
+    box-sizing: inherit;
+}

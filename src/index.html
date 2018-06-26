@@ -4,15 +4,88 @@
 <head>
     <meta charset="utf-8">
     <title>Data Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="media/fonts.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="media/w3.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 
 <body>
-    <button type="button" id="prueba">Sedes</button>
+    <img src="media/logo.svg" alt="Logo Laboratoria">
+    <h2>Data Dashboard</h1>
+        <p>Ingrese su usuario y contraseña</p>
+        <div class="container-fluid">
+            <div>
+                <input class="col-md-3 offset-" type="text" name="userid" placeholder="Usuario">
+                <input class="col-md-3 offset-1" type="password" name="psw" placeholder="Contraseña">
+                <input class="col-md-3 offset-1" id="btnSizing" type="submit">
+            </div>
+        </div>
+        <button type="button" id="getSedes">SEDES</button>
+        <div class="w3-container">
+            <table class="w3-table-all w3-hoverable" id="tableCiudad">
+                <thead>
+                    <tr class="w3-light-grey">
+                        <th>Ciudad</th>
+                        <th>Cant. alumnas</th>
+                </thead>
+                <tr>
+                    <td id="tableCdmx"></td>
+                    <td id="contStudentsCdmx"></td>
+                </tr>
+                <tr>
+                    <td id="tableGdl"></td>
+                    <td id="contStudentsGdl"></td>
 
-    <script src="main.js"></script>
-    <script src="datados.js"></script>
+                </tr>
+                <tr>
+                    <td id="tablePeru"></td>
+                    <td id="contStudentsLima"></td>
+                </tr>
+                <tr>
+                    <td id="tableChile"></td>
+                    <td id="contStudentsScl"></td>
+                </tr>
+                <tr>
+                    <td id="tableBrasil"></td>
+                    <td id="contStudentsSpl"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+
+        <!--<div class="w3-container">
+        <button type="button" id="btnGeneracion">GENERACIÓN</h2>
+        <h3>México</h3>
+        <table class="w3-table-all w3-hoverable">
+            <thead>
+                <tr class="w3-light-grey">
+                    <th>Generacion</th>
+                    <th>Cant. alumnas</th>
+            </thead>
+            <tr>
+                <td id = "generationYearCdmx">2018-1</td>
+                <td id = "contStudentsInGeneration">50</td>
+            </tr>
+            <tr>
+                <td>2017-2</td>
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>2017-1</td>
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>2016-2</td>
+                <td>37</td>
+            </tr>
+        </table>
+    </div> 
+!-->
+        <script src="main.js"></script>
+        <script src="data.js"></script>
 </body>
 
 </html>
