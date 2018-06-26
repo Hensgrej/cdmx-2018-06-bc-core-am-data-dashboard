@@ -1,0 +1,40 @@
+Requerimientos según los test unitarios:
+   - debería exponer función computeStudentsStats en objeto global
+   - debería exponer función computeGenerationsStats en objeto global
+   - debería exponer función sortStudents en objeto global
+   - debería exponer función filterStudents en objeto global
+
+
+Al entrar a la página:
+
+- El usuario verá una categoría llamada Sede
+- Al clickear esta categoría, podrá ver una subcategoría llamada Generaciones
+- Dentro de Generaciones, encontrará los siguientes datos de estudiantes:
+        - Nombre
+        - Email
+        - Sede
+        - Generaciones
+        Una subcategoría llamada Stats con lo siguiente:
+            - Status
+            - Porcentaje de Completado
+            - Temario
+            Dentro de Temario:
+                - Porcentaje de Completado del Tema especifico
+                - Porcentaje de Duracion
+                Dentro de cada tema:
+                    - Porcentaje de Completado
+                    - Descripcion del Tema
+                    - Duración.
+
+Al tener esto, el usuario podrá buscar items especificos dentro de Generaciones
+así como ordenar subcategorías (Ejemplo: ordenar estudiantes por nombre).
+
+Asi también, podrá filtrar las generaciones:
+    - Sede
+    - Generacion
+    - Promedio de Porcentaje de Completado
+    - Numero de estudiantes de la generacion
+
+Llenaremos todas estas categorias mediante una base de datos (laboratoria.json).
+Buscaremos dentro de esa base de datos lo que necesitamos para llenar estas categorias
+y que el usuario pueda filtrar los datos buscando por categorias puntuales.
