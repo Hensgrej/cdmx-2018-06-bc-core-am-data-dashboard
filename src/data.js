@@ -1,17 +1,17 @@
 const getLima = () => {
     fetch('https://api.myjson.com/bins/13lpdy').then(response => {
         return response.json();
-      }).then(data => {
+    }).then(data => {
         let dataLima = data.lima;
         let generationLima = data.lima.generacion;
         let thirdGenerationLima = data.lima.generacion.tercera;
         let fourthGenerationLima = data.lima.generacion.cuarta;
         let fifthGenerationLima = data.lima.generacion.quinta;
-    
+
         let studentsThirdGenerationLima = data.lima.generacion.tercera.estudiantes;
         let studentsFourthGenerationLima = data.lima.generacion.cuarta.estudiantes;
         let studentsFifthGenerationLima = data.lima.generacion.quinta.estudiantes;
-        
+
         if (dataLima) {
             let btnLim = document.createElement("BUTTON");
             let txt = document.createTextNode("Lima");
@@ -19,23 +19,23 @@ const getLima = () => {
             document.body.appendChild(btnLim);
             btnLim.addEventListener("click", () => {
                 let tdResult = document.createElement("li");
-                let showData = data.lima.generacion;
+                let showData = data.lima;
                 let objToString = JSON.stringify(showData);
                 let aTxt = document.createTextNode(objToString);
                 tdResult.appendChild(aTxt);
                 document.body.appendChild(tdResult)
             })
         }
-      }).catch(err => {
+    }).catch(err => {
         console.log('Error');
-      });
-    }
-    getLima();
-    
-    const getMexico = () => {
-        fetch('https://api.myjson.com/bins/13lpdy').then(response => {
+    });
+}
+getLima();
+
+const getMexico = () => {
+    fetch('https://api.myjson.com/bins/13lpdy').then(response => {
         return response.json();
-      }).then(data => {
+    }).then(data => {
         let dataMexico = data.mexico;
         let generationsMexico = data.mexico.generacion;
         let thirdGenerationMexico = data.mexico.generacion.tercera;
@@ -56,16 +56,16 @@ const getLima = () => {
                 document.body.appendChild(tdResult);
             })
         }
-      }).catch(err => {
+    }).catch(err => {
         console.log('Error');
-      });
-    }
-    getMexico();
-    
-    const getStgo = () => {
-        fetch('https://api.myjson.com/bins/13lpdy').then(response => {
+    });
+}
+getMexico();
+
+const getStgo = () => {
+    fetch('https://api.myjson.com/bins/13lpdy').then(response => {
         return response.json();
-      }).then(data => {
+    }).then(data => {
         let dataSantiago = data.santiago;
         let generationSantiago = data.santiago.generacion;
         let thirdGeneratioSantiago = data.santiago.generacion.tercera;
@@ -86,27 +86,27 @@ const getLima = () => {
                 document.body.appendChild(tdResult);
             })
         }
-      }).catch(err => {
+    }).catch(err => {
         console.log('Error');
-      });
-    }
-    
-    getStgo();
-    
-    const computeStudentStats = () => {
-        fetch('https://api.myjson.com/bins/13lpdy').then(response => {
+    });
+}
+
+getStgo();
+
+const computeStudentStats = () => {
+    fetch('https://api.myjson.com/bins/13lpdy').then(response => {
         return response.json();
-      }).then(data => {
+    }).then(data => {
         if (getMexico) {
-        let progreso = "";     
-        let statsFourthGenerationMexico = data.mexico.generacion.cuarta.estudiantes.progreso;   
-        statsFourthGenerationMexico.forEach(function (data) {
-            progreso = data.mexico.generacion.cuarta.estudiantes[i].progreso;
-        console.log(progreso);       
-        })
-    }
+            let progreso = "";
+            let statsFourthGenerationMexico = data.mexico.generacion.cuarta.estudiantes.progreso;
+            statsFourthGenerationMexico.forEach(function(data) {
+                progreso = data.mexico.generacion.cuarta.estudiantes[i].progreso;
+                console.log(progreso);
+            })
+        }
     })
-    }
-    
-    
-    computeStudentStats();
+}
+
+
+computeStudentStats();
