@@ -9,6 +9,15 @@ let btnChile = document.getElementById('chile');
 let limaTable = document.getElementById('limaGenerationsTable');
 let mexicoTable = document.getElementById('mexicoGenerationsTable');
 let chileTable = document.getElementById('chileGenerationsTable');
+let btnLimaThird = document.getElementById('btnThirdLima');
+let btnLimaFourth = document.getElementById('btnFourthLima');
+let btnLimaFifth = document.getElementById('btnFifthLima');
+let btnMexicoThird = document.getElementById('btnThirdMexico');
+let btnMexicoFourth = document.getElementById('btnFourthMexico');
+let btnMexicoFifth = document.getElementById('btnFifthMexico');
+let btnChileThird = document.getElementById('btnThirdChile');
+let btnChileFourth = document.getElementById('btnFourthChile');
+let btnChileFifth = document.getElementById('btnFifthChile');
 
 // Table position of Lima's generations and their Array Length (Total students of each generation)
 let limaFifthLength = document.getElementById('limaFifth');
