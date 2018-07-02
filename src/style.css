@@ -88,6 +88,10 @@ input {
     position: relative;
 }
 
+.lima-third-name {
+    text-align: center;
+}
+
 .campuses-generations-table {
     position: relative;
     left: 45%;

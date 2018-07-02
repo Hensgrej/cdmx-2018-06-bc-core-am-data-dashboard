@@ -33,6 +33,8 @@ let chileArticle = document.getElementById('chileTables');
 let studentsArticle = document.getElementById('studentStatsTable');
 
 
+
+
 // Table position of Lima's generations and their Array Length (Total students of each generation)
 let limaFifthLength = document.getElementById('limaFifth');
 let limaFourthLength = document.getElementById('limaFourth');
@@ -52,53 +54,53 @@ let chileThirdLength = document.getElementById('chileThird');
 let testReturn = {};
 
 // Storing Lima's generational stats
-let limaThirdEachStudentName = [];
-let limaThirdEachStudentMail = [];
-let limaThirdStudentProgress = [];
-let limaThirdProgramLength = [];
-let limaThirdProgramPercentage = [];
-let limaFourthEachStudentName = [];
-let limaFourthEachStudentMail = [];
-let limaFourthStudentProgress = [];
-let limaFourthProgramLength = [];
-let limaFourthProgramPercentage = [];
-let limaFifthEachStudentName = [];
-let limaFifthEachStudentMail = [];
-let limaFifthStudentProgress = [];
-let limaFifthProgramLength = [];
-let limaFifthProgramPercentage = [];
+let limaThirdEachStudentName = "";
+let limaThirdEachStudentMail = "";
+let limaThirdStudentProgress = "";
+let limaThirdProgramLength = "";
+let limaThirdProgramPercentage = "";
+let limaFourthEachStudentName = "";
+let limaFourthEachStudentMail = "";
+let limaFourthStudentProgress = "";
+let limaFourthProgramLength = "";
+let limaFourthProgramPercentage = "";
+let limaFifthEachStudentName = "";
+let limaFifthEachStudentMail = "";
+let limaFifthStudentProgress = "";
+let limaFifthProgramLength = "";
+let limaFifthProgramPercentage = "";
 // Storing Mexico's generational stats
-let mexicoThirdEachStudentName = [];
-let mexicoThirdEachStudentMail = [];
-let mexicoThirdStudentProgress = [];
-let mexicoThirdProgramLength = [];
-let mexicoThirdProgramPercentage = [];
-let mexicoFourthEachStudentName = [];
-let mexicoFourthEachStudentMail = [];
-let mexicoFourthStudentProgress = [];
-let mexicoFourthProgramLength = [];
-let mexicoFourthProgramPercentage = [];
-let mexicoFifthEachStudentName = [];
-let mexicoFifthEachStudentMail = [];
-let mexicoFifthStudentProgress = [];
-let mexicoFifthProgramLength = [];
-let mexicoFifthProgramPercentage = [];
+let mexicoThirdEachStudentName = "";
+let mexicoThirdEachStudentMail = "";
+let mexicoThirdStudentProgress = "";
+let mexicoThirdProgramLength = "";
+let mexicoThirdProgramPercentage = "";
+let mexicoFourthEachStudentName = "";
+let mexicoFourthEachStudentMail = "";
+let mexicoFourthStudentProgress = "";
+let mexicoFourthProgramLength = "";
+let mexicoFourthProgramPercentage = "";
+let mexicoFifthEachStudentName = "";
+let mexicoFifthEachStudentMail = "";
+let mexicoFifthStudentProgress = "";
+let mexicoFifthProgramLength = "";
+let mexicoFifthProgramPercentage = "";
 // Storing Chile's generational stats
-let chileThirdEachStudentName = [];
-let chileThirdEachStudentMail = [];
-let chileThirdStudentProgress = [];
-let chileThirdProgramLength = [];
-let chileThirdProgramPercentage = [];
-let chileFourthEachStudentName = [];
-let chileFourthEachStudentMail = [];
-let chileFourthStudentProgress = [];
-let chileFourthProgramLength = [];
-let chileFourthProgramPercentage = [];
-let chileFifthEachStudentName = [];
-let chileFifthEachStudentMail = [];
-let chileFifthStudentProgress = [];
-let chileFifthProgramLength = [];
-let chileFifthProgramPercentage = [];
+let chileThirdEachStudentName = "";
+let chileThirdEachStudentMail = "";
+let chileThirdStudentProgress = "";
+let chileThirdProgramLength = "";
+let chileThirdProgramPercentage = "";
+let chileFourthEachStudentName = "";
+let chileFourthEachStudentMail = "";
+let chileFourthStudentProgress = "";
+let chileFourthProgramLength = "";
+let chileFourthProgramPercentage = "";
+let chileFifthEachStudentName = "";
+let chileFifthEachStudentMail = "";
+let chileFifthStudentProgress = "";
+let chileFifthProgramLength = "";
+let chileFifthProgramPercentage = "";
 // Hiding non necessary HTML elements for Initial Home Page
 generationTable.style.display = "none";
 btnsSection.style.display = "none";
@@ -109,7 +111,7 @@ btnSubmit.addEventListener("click", () => {
     loginSection.style.display = "none";
     btnsSection.style.display = "block";
     data.computeStudentStats()
-    // If the user chooses Lima
+        // If the user chooses Lima
     btnLima.addEventListener("click", () => {
             generationTable.style.display = "block"
             chileTable.style.display = "none";
@@ -123,8 +125,10 @@ btnSubmit.addEventListener("click", () => {
                 limaTable.style.display = "none";
                 studentsArticle.style.display = "block"
                 mexicoArticle.style.display = "none";
-                chileArticle.style.display="none";
-                console.log(typeof(limaThirdEachStudentName));          
+                chileArticle.style.display = "none";
+                limaFourthStatsTable.style.display = "none";
+                limaFifthStatsTable.style.display = "none";
+                limaArticle.style.display = "block";
             })
         })
         // User chooses Mexico
