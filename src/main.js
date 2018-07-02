@@ -18,6 +18,19 @@ let btnMexicoFifth = document.getElementById('btnFifthMexico');
 let btnChileThird = document.getElementById('btnThirdChile');
 let btnChileFourth = document.getElementById('btnFourthChile');
 let btnChileFifth = document.getElementById('btnFifthChile');
+let limaThirdStatsTable = document.getElementById('limaThirdStudentStatsTable');
+let limaFourthStatsTable = document.getElementById('limaFourthStudentStatsTable');
+let limaFifthStatsTable = document.getElementById('limaFifthStudentStatsTable');
+let mexicoThirdStatsTable = document.getElementById('mexicoThirdStudentStatsTable');
+let mexicoFourthStatsTable = document.getElementById('mexicoFourthStudentStatsTable');
+let mexicoFifthStatsTable = document.getElementById('mexicoFifthStudentStatsTable');
+let chileThirdStatsTable = document.getElementById('chileThirdStudentStatsTable');
+let chileFourthStatsTable = document.getElementById('chileFourthStudentStatsTable');
+let chileFifthStatsTable = document.getElementById('chileFifthStudentStatsTable');
+let limaArticle = document.getElementById('limaTables');
+let mexicoArticle = document.getElementById('mexicoTables');
+let chileArticle = document.getElementById('chileTables');
+let studentsArticle = document.getElementById('studentStatsTable');
 
 // Table position of Lima's generations and their Array Length (Total students of each generation)
 let limaFifthLength = document.getElementById('limaFifth');
@@ -35,11 +48,60 @@ let chileFourthLength = document.getElementById('chileFourth');
 let chileThirdLength = document.getElementById('chileThird');
 
 // Storing Data from data.js
-let testReturn = {};
+let testReturn = [{}];
 
+// Storing Lima's generational stats
+let limaThirdEachStudentName = "";
+let limaThirdEachStudentMail = "";
+let limaThirdStudentProgress = "";
+let limaThirdProgramLength = "";
+let limaThirdProgramPercentage = "";
+let limaFourthEachStudentName = "";
+let limaFourthEachStudentMail = "";
+let limaFourthStudentProgress = "";
+let limaFourthProgramLength = "";
+let limaFourthProgramPercentage = "";
+let limaFifthEachStudentName = "";
+let limaFifthEachStudentMail = "";
+let limaFifthStudentProgress = "";
+let limaFifthProgramLength = "";
+let limaFifthProgramPercentage = "";
+// Storing Mexico's generational stats
+let mexicoThirdEachStudentName = "";
+let mexicoThirdEachStudentMail = "";
+let mexicoThirdStudentProgress = "";
+let mexicoThirdProgramLength = "";
+let mexicoThirdProgramPercentage = "";
+let mexicoFourthEachStudentName = "";
+let mexicoFourthEachStudentMail = "";
+let mexicoFourthStudentProgress = "";
+let mexicoFourthProgramLength = "";
+let mexicoFourthProgramPercentage = "";
+let mexicoFifthEachStudentName = "";
+let mexicoFifthEachStudentMail = "";
+let mexicoFifthStudentProgress = "";
+let mexicoFifthProgramLength = "";
+let mexicoFifthProgramPercentage = "";
+// Storing Chile's generational stats
+let chileThirdEachStudentName = "";
+let chileThirdEachStudentMail = "";
+let chileThirdStudentProgress = "";
+let chileThirdProgramLength = "";
+let chileThirdProgramPercentage = "";
+let chileFourthEachStudentName = "";
+let chileFourthEachStudentMail = "";
+let chileFourthStudentProgress = "";
+let chileFourthProgramLength = "";
+let chileFourthProgramPercentage = "";
+let chileFifthEachStudentName = "";
+let chileFifthEachStudentMail = "";
+let chileFifthStudentProgress = "";
+let chileFifthProgramLength = "";
+let chileFifthProgramPercentage = "";
 // Hiding non necessary HTML elements for Initial Home Page
 generationTable.style.display = "none";
 btnsSection.style.display = "none";
+studentsArticle.style.display = "none";
 
 // Calling event function to kickstart the rest of the website
 btnSubmit.addEventListener("click", () => {
@@ -55,7 +117,18 @@ btnSubmit.addEventListener("click", () => {
             btnMexico.style.display = "none";
             btnLima.style.display = "none";
             limaTable.style.display = "block";
+           // limaThirdLength = testReturn.students[0];
+           // limaFourthLength = testReturn.students[1];
+           // limaFifthLength = testReturn.students[2];
             data.printStudents();
+            btnLimaThird.addEventListener("click", () => {
+                limaTable.style.display = "none";
+                studentsArticle.style.display = "block"
+                mexicoArticle.style.display = "none";
+                chileArticle.style.display="none";
+
+            })
+
         })
         // User chooses Mexico
     btnMexico.addEventListener("click", () => {
@@ -63,11 +136,13 @@ btnSubmit.addEventListener("click", () => {
             btnChile.style.display = "none";
             btnMexico.style.display = "none";
             btnLima.style.display = "none";
+            limaTable.style.display = "none";
+            chileTable.style.display = "none";
             mexicoTable.style.display = "block";
-            mexicoThirdLength = testReturn.students[3];
-            mexicoFourthLength = testReturn.students[4];
-            mexicoFifthLength = testReturn.students[5];
             data.printStudents();
+            //mexicoThirdLength = testReturn.students[3];
+            //mexicoFourthLength = testReturn.students[4];
+            //mexicoFifthLength = testReturn.students[5];
         })
         // User chooses Chile
     btnChile.addEventListener("click", () => {
@@ -75,10 +150,12 @@ btnSubmit.addEventListener("click", () => {
         btnChile.style.display = "none";
         btnMexico.style.display = "none";
         btnLima.style.display = "none";
+        mexicoTable.style.display = "none";
+        limaTable.style.display = "none";
         chileTable.style.display = "block";
-        chileThirdLength = testReturn.students[6];
-        chileFourthLength = testReturn.students[7];
-        chileFifthLength = testReturn.students[8];
         data.printStudents();
+        //chileThirdLength = testReturn.students[6];
+        //chileFourthLength = testReturn.students[7];
+        //chileFifthLength = testReturn.students[8];
     })
 });
