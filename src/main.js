@@ -25,6 +25,9 @@ let chileFifthLength = document.getElementById('chileFifth');
 let chileFourthLength = document.getElementById('chileFourth');
 let chileThirdLength = document.getElementById('chileThird');
 
+// Storing Data from data.js
+let testReturn = {};
+
 // Hiding non necessary HTML elements for Initial Home Page
 generationTable.style.display = "none";
 btnsSection.style.display = "none";
@@ -43,6 +46,7 @@ btnSubmit.addEventListener("click", () => {
             btnMexico.style.display = "none";
             btnLima.style.display = "none";
             limaTable.style.display = "block";
+            data.printStudents();
         })
         // User chooses Mexico
     btnMexico.addEventListener("click", () => {
@@ -51,6 +55,10 @@ btnSubmit.addEventListener("click", () => {
             btnMexico.style.display = "none";
             btnLima.style.display = "none";
             mexicoTable.style.display = "block";
+            mexicoThirdLength = testReturn.students[3];
+            mexicoFourthLength = testReturn.students[4];
+            mexicoFifthLength = testReturn.students[5];
+            data.printStudents();
         })
         // User chooses Chile
     btnChile.addEventListener("click", () => {
@@ -59,6 +67,9 @@ btnSubmit.addEventListener("click", () => {
         btnMexico.style.display = "none";
         btnLima.style.display = "none";
         chileTable.style.display = "block";
-
+        chileThirdLength = testReturn.students[6];
+        chileFourthLength = testReturn.students[7];
+        chileFifthLength = testReturn.students[8];
+        data.printStudents();
     })
 });

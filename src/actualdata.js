@@ -20,7 +20,7 @@ window.data = {
             let chileStudentsFourthGeneration = data.santiago.generacion.cuarta.estudiantes;
             let chileStudentsFifthGeneration = data.santiago.generacion.quinta.estudiantes;
             // End of Chile Students
-            let testReturn = {
+            testReturn = {
                 'campus': ['Lima', 'México', 'Santiago'],
                 'students': [
                     limaStudentsThirdGeneration,
@@ -36,5 +36,20 @@ window.data = {
             }
             return testReturn;
         })
+    },
+    printStudents: () => {
+        if (btnLima) {
+            limaThirdLength.innerHTML = testReturn.students[0].length;
+            limaFourthLength.innerHTML = testReturn.students[1].length;
+            limaFifthLength.innerHTML = testReturn.students[2].length;
+        } else if (btnMexico) {
+            mexicoThirdLength.innerHTML = testReturn.students[3].length;
+            mexicoFourthLength.innerHTML = testReturn.students[4].length;
+            mexicoFifthLength.innerHTML = testReturn.students[5].length;
+        } else if (btnChile) {
+            chileThirdLength.innerHTML = testReturn.students[6].length;
+            chileFourthLength.innerHTML = testReturn.students[7].length;
+            chileFifthLength.innerHTML = testReturn.students[8].length;
+        }
     }
 }
