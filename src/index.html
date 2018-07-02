@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Data Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale= 1.1">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="imagenes/laboratoria logo.png" alt="Logo Laboratoria">
+        <h2>Data Dashboard</h2>
+    </header>
+
+    <section id="login">
+        <p>Ingrese su usuario y contraseña</p>
+        <div class="container-fluid">
+            <form>
+                <input class="col-md-3 offset-" type="text" name="userid" placeholder="Usuario">
+                <input class="col-md-3 offset-1" type="password" name="psw" placeholder="Contraseña">
+                <button type="button" id="btnSizing">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <main>
+
+        <section id="btnsSedes" class="btns-sedes">
+            <button type="BUTTON" id="lima"> Lima </button>
+            <button type="BUTTON" id="mexico"> México </button>
+            <button type="BUTTON" id="chile"> Chile </button>
+        </section>
+
+        <!-- Generation Tables for all Campuses-->
+        <article id="campusesGenerationTables" class="campuses-generations-table">
+            <!-- Lima's Generation Table -->
+            <section id="limaGenerationsTable">
+                <table class="lima-generations-table">
+                    <tr>
+                        <th>Generación</th>
+                        <th>Cant. Alumnas</th>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnFifthLima">Quinta</button></td>
+                        <td id="limaFifth"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnFourthLima">Cuarta</button></td>
+                        <td id="limaFourth"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnThirdLima">Tercera</button></td>
+                        <td id="limaThird"></td>
+                    </tr>
+                </table>
+            </section>
+            <!-- Mexico's Generation Table -->
+            <section id="mexicoGenerationsTable">
+                <table class="mexico-generations-table">
+                    <tr>
+                        <th>Generación</th>
+                        <th>Cant. Alumnas</th>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnFifthMexico">Quinta</button></td>
+                        <td id="mexicoFifth"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnFourthMexico">Cuarta</button></td>
+                        <td id="mexicoFourth"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnThirdMexico">Tercera</button></td>
+                        <td id="mexicoThird"></td>
+                    </tr>
+                </table>
+            </section>
+            <!-- Chile's Generation Table-->
+            <section id="chileGenerationsTable">
+                <table class="chile-generations-table">
+                    <tr>
+                        <th>Generación</th>
+                        <th>Cant. Alumnas</th>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnFifthChile">Quinta</button></td>
+                        <td id="chileFifth"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnFourthChile">Cuarta</button></td>
+                        <td id="chileFourth"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="btnThirdChile">Tercera</button></td>
+                        <td id="chileThird"></td>
+                    </tr>
+                </table>
+            </section>
+        </article>
+        <!-- Stats Table -->
+        <article id="studentStatsTable">
+            <!-- Lima's stats tables -->
+            <article id="limaTables">
+            <section id="limaThirdStudentStatsTable">
+                <table class="lima-third-student-stats">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>% Completado</th>
+                        <th>Duracion del Programa</th>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </table>
+            </section>
+            <section id="limaFourthStudentStatsTable">
+                <table class="lima-fourth-student-stats">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>% Completado</th>
+                        <th>Duracion del Programa</th>
+                    </tr>
+                </table>
+            </section>
+            <section id="limaFifthStudentStatsTable">
+                <table class="lima-fifth-student-stats">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>% Completado</th>
+                        <th>Duracion del Programa</th>
+                    </tr>
+                </table>
+            </section>
+            </article>
+            <!-- Mexico's stat tables-->
+            <article id="mexicoTables">
+            <section id="mexicoThirdStudentStatsTable">
+                    <table class="mexico-third-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                    </table>
+                </section>
+            <section id="mexicoFourthStudentStatsTable">
+                    <table class="mexico-fourth-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                    </table>
+                </section>
+            <section id="mexicoFifthStudentStatsTable">
+                    <table class="mexico-fifth-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                    </table>
+                </section>
+                </article>
+                <!-- Chile's students stats -->
+                <article id="chileTables">
+                <section id="chileThirdStudentStatsTable">
+                        <table class="chile-third-student-stats">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>% Completado</th>
+                                <th>Duracion del Programa</th>
+                            </tr>
+                        </table>
+                    </section>
+                <section id="chileFourthStudentStatsTable">
+                    <table class="chile-fourth-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                    </table>
+                    </section>
+                <section id="chileFifthStudentStatsTable">
+                    <table class="chile-fifth-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                    </table>
+                </section>
+                </article>
+        </article>
+    </main>
+    <script src="actualdata.js"></script>
+    <script src="main.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+

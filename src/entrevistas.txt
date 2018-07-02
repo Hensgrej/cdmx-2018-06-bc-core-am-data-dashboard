@@ -1,0 +1,14 @@
+Para poder recolectar datos acerca de posibles usuarios, creamos una serie de preguntas orientadas
+al uso, manejo y visualización de programas de productividad, en especial aquellos que manejan
+gran cantidad de data.
+
+Entrevistamos a (cantidad), donde (cantidad) fueron mujeres y (cantidad) fueron hombres.
+Con edades desde 22 años a 35 años, hispanohablantes, con conocimiento intermedio-avanzado
+de computación. 
+
+Mediante nuestras entrevistas, pudimos rescatar los siguientes datos:
+- La mayoría de las personas que utilizan herramientas para manejar data utilizan Excel y Spreadsheets
+- Se reconoce que lo que menos les agrada es la dificultad de leer data especifica y que no esten condensadas.
+- La mayoría busca un ambiente de trabajo limpio, manejo rápido y eficaz de datos y visualización condensada.
+- Predomina la preferencia por colores claros, con dos colores principales y fondo blanco o gris.
+- Se prefiere visualizar mucha información de forma rápida, poder modificarla y rápido acceso a diferentes partes de la página.
