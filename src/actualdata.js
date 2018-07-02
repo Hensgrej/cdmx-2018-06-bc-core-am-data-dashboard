@@ -19,6 +19,7 @@ window.data = {
             let chileStudentsThirdGeneration = data.santiago.generacion.tercera.estudiantes;
             let chileStudentsFourthGeneration = data.santiago.generacion.cuarta.estudiantes;
             let chileStudentsFifthGeneration = data.santiago.generacion.quinta.estudiantes;
+            console.log(chileStudentsFifthGeneration);
             // End of Chile Students
             // Start of Lima Student Stats
             let limaThirdStats = data.lima.generacion.tercera.estudiantes;
@@ -95,7 +96,7 @@ window.data = {
                 chileFifthStudentLength = data.santiago.generacion.quinta.estudiantes[k].progreso.duracionPrograma;
                 chileFifthProgramPercentage = data.santiago.generacion.quinta.estudiantes[k].progreso.porcentajeCompletado;
              }
-            testReturn += {
+            testReturn = {
                 'campus': ['Lima', 'México', 'Santiago'],
                 'students': [
                     limaStudentsThirdGeneration,
@@ -110,27 +111,30 @@ window.data = {
                 ]
 
             }
-            //console.log(typeof(testReturn));
+            returnStats = {
+                students : []
+            }
+            console.log(testReturn.students[8]);
+            //console.log(testReturn);
             return testReturn;
 
         })
     },
-    printStudents: () => {
-        console.log(testReturn);
-        if (btnLima) {
+    printStudentsLima: () => {
             limaThirdLength.innerHTML = testReturn.students[0].length;
             limaFourthLength.innerHTML = testReturn.students[1].length;
-            limaFifthLength.innerHTML = testReturn.students[2].length;
-        } else if (btnMexico) {
+            limaFifthLength.innerHTML = testReturn.students[2].length
+    },
+    printStudentsMexico: () => {
             mexicoThirdLength.innerHTML = testReturn.students[3].length;
             mexicoFourthLength.innerHTML = testReturn.students[4].length;
             mexicoFifthLength.innerHTML = testReturn.students[5].length;
-        } else if (btnChile) {
+    },
+    printStudentsChile: () => {
             chileThirdLength.innerHTML = testReturn.students[6].length;
             chileFourthLength.innerHTML = testReturn.students[7].length;
             chileFifthLength.innerHTML = testReturn.students[8].length;
-        }
-    },
+        },
     generationStats : () => {
         let 
     }

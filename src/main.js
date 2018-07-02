@@ -48,7 +48,7 @@ let chileFourthLength = document.getElementById('chileFourth');
 let chileThirdLength = document.getElementById('chileThird');
 
 // Storing Data from data.js
-let testReturn = [{}];
+let testReturn = {};
 
 // Storing Lima's generational stats
 let limaThirdEachStudentName = "";
@@ -107,7 +107,7 @@ studentsArticle.style.display = "none";
 btnSubmit.addEventListener("click", () => {
     loginSection.style.display = "none";
     btnsSection.style.display = "block";
-    data.computeStudentStats();
+    data.computeStudentStats()
     // If the user chooses Lima
     btnLima.addEventListener("click", () => {
             generationTable.style.display = "block"
@@ -117,18 +117,14 @@ btnSubmit.addEventListener("click", () => {
             btnMexico.style.display = "none";
             btnLima.style.display = "none";
             limaTable.style.display = "block";
-           // limaThirdLength = testReturn.students[0];
-           // limaFourthLength = testReturn.students[1];
-           // limaFifthLength = testReturn.students[2];
-            data.printStudents();
+            data.printStudentsLima();
             btnLimaThird.addEventListener("click", () => {
                 limaTable.style.display = "none";
                 studentsArticle.style.display = "block"
                 mexicoArticle.style.display = "none";
                 chileArticle.style.display="none";
-
+                
             })
-
         })
         // User chooses Mexico
     btnMexico.addEventListener("click", () => {
@@ -139,10 +135,8 @@ btnSubmit.addEventListener("click", () => {
             limaTable.style.display = "none";
             chileTable.style.display = "none";
             mexicoTable.style.display = "block";
-            data.printStudents();
-            //mexicoThirdLength = testReturn.students[3];
-            //mexicoFourthLength = testReturn.students[4];
-            //mexicoFifthLength = testReturn.students[5];
+            data.printStudentsMexico();
+
         })
         // User chooses Chile
     btnChile.addEventListener("click", () => {
@@ -153,9 +147,6 @@ btnSubmit.addEventListener("click", () => {
         mexicoTable.style.display = "none";
         limaTable.style.display = "none";
         chileTable.style.display = "block";
-        data.printStudents();
-        //chileThirdLength = testReturn.students[6];
-        //chileFourthLength = testReturn.students[7];
-        //chileFifthLength = testReturn.students[8];
+        data.printStudentsChile();
     })
 });
