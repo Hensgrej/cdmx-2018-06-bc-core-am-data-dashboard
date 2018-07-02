@@ -1,7 +1,53 @@
+
 body {
     color: #2b2b2b;
     font-family: museo-sans, Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: 100;
+
+    font-size: 16px;
+    line-height: 145%;
+    margin: 0%;
+    padding:0%;
+  }
+
+  h1 {
+    font-family: Montserrat, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: black;
+    text-align: center;
+    font-size:2vw;
+    border-top: 10px
+  }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1vw;
+}
+
+p {
+    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    font-size:1.5vw;
+}
+input {
+    align-items: center;
+    width: 15vw;
+    background-color: rgba(255,165,0);
+    color: black;
+    padding: 14px 20px;
+    margin-left: 100px !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size:1.5vw;
+    
+}
+button {
     line-height: 145%;
     margin: 0%;
     padding: 0%;
@@ -20,6 +66,7 @@ h2 {
 img {
     width: 250px;
     height: 150px;
+
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -45,6 +92,17 @@ input {
     align-items: center;
     color: black;
     border: none;
+
+}
+
+.w3-container {
+  
+    box-sizing: inherit;
+    
+    
+
+}
+
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.5vw !important;
@@ -109,3 +167,4 @@ input {
 .w3-container {
     box-sizing: inherit;
 }
+
