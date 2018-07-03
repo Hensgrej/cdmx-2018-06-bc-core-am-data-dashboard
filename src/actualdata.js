@@ -19,6 +19,7 @@ window.data = {
             let chileStudentsThirdGeneration = data.santiago.generacion.tercera.estudiantes;
             let chileStudentsFourthGeneration = data.santiago.generacion.cuarta.estudiantes;
             let chileStudentsFifthGeneration = data.santiago.generacion.quinta.estudiantes;
+            console.log(chileStudentsFifthGeneration);
             // End of Chile Students
             // Start of Lima Student Stats
             let limaThirdStats = data.lima.generacion.tercera.estudiantes;
@@ -221,6 +222,8 @@ window.data = {
             returnStats = {
                 students: []
             }
+            console.log(testReturn.students[8]);
+            //console.log(testReturn);
             return testReturn;
 
         })
