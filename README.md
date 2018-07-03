@@ -41,6 +41,18 @@ Mediante nuestras entrevistas, pudimos rescatar los siguientes datos:
 - Predomina la preferencia por colores claros, con dos colores principales y fondo blanco o gris.
 - Se prefiere visualizar mucha información de forma rápida, poder modificarla y rápido acceso a diferentes partes de la página.
 
+## Diseño
+Nos basamos exclusivamente en [este artículo]('https://medium.com/laboratoria/laboratoria-renueva-su-marca-1665e9fa8956') de Medium donde nos explican el nuevo diseño de Laboratoria.
+Ya que esta página web va dirigida a staff de Laboratoria, decidimos mantener un diseño semejante al de la marca. 
+Dejamos de lado el color rosado, ya que aunque usamos la misma paleta de colores que Laboratoria, como distribuimos estos colores no deja espacio para un tercer color dominante. 
+
+Decidimos que los corchetes fueran una gran parte del diseño y que se vean en cualquier parte de la página, ya que pensamos que es algo que representa no solo la marca, sino lo que las alumnas aprenden día a día.
+
+Para facilitar la navegación, utilizamos tabs y botones que ocultan o muestran diferentes elementos de la página, para evitar refrescar constantemente o tener que utilizar diferentes pestañas. Una paginación estará presente en cada parte de la página para que el usuario pueda moverse a diferentes secciones sin tener que empezar desde el inicio.
+
+Preferímos mostrar los datos en tablas, haciendo enfasis con un texto más grande en vez de gráficas o barras de progreso, ya que el número es facil de leer y se entiende de forma instantanea.
+
+
 
 # Funcionalidad
 
