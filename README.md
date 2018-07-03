@@ -43,8 +43,9 @@ Mediante nuestras entrevistas, pudimos rescatar los siguientes datos:
 
 ## Diseño
 Nos basamos exclusivamente en [este artículo](https://medium.com/laboratoria/laboratoria-renueva-su-marca-1665e9fa8956) de Medium donde nos explican el nuevo diseño de Laboratoria.
+
 Ya que esta página web va dirigida a staff de Laboratoria, decidimos mantener un diseño semejante al de la marca. 
-Dejamos de lado el color rosado, ya que aunque usamos la misma paleta de colores que Laboratoria, como distribuimos estos colores no deja espacio para un tercer color dominante. 
+Dejamos de lado el color rosado, ya que aunque usamos la misma paleta de colores, cómo distribuimos estos colores no deja espacio para un tercer color dominante. 
 
 En la siguiente imagen podemos ver la pagina inicial del programa, con su paleta de colores, fuentes e imagenes usadas.
 ![img](https://raw.githubusercontent.com/Hensgrej/cdmx-2018-06-bc-core-am-data-dashboard/master/Media%20README/prototipo1.PNG "Pagina Inicial de Prototipo con Paleta de Colores")
