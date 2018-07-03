@@ -5,14 +5,15 @@
     <meta charset="utf-8">
     <title>Data Dashboard</title>
     <link rel="stylesheet" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale= 1.1">
+    <meta name="viewport" content="width=device-width, initial-scale= 0.5">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <img src="imagenes/laboratoria logo.png" id="logo" alt="Logo Laboratoria" ​align="right">
         <img src="imagenes/triangulo.png" id="triangulo" alt="Triangulo" ​align=""><br>
-<div><h2>Data Dashboard</h2><br>
+        <h2>Data Dashboard</h2><br>
     </header>
 
     <section id="login">
@@ -23,8 +24,8 @@
                 <input class="col-md-3 offset-1" type="password" name="psw" placeholder="Contraseña"><br>
                 <button type="button" id="btnSizing">Submit</button>
             </form>
-            </div>
-    </section>  
+        </div>
+    </section>
     <div>
         <section id="btnsSedes" class="btns-sedes">
             <button type="BUTTON" id="lima"> Lima </button>
@@ -102,77 +103,110 @@
         <article id="studentStatsTable">
             <!-- Lima's stats tables -->
             <article id="limaTables">
-            <section id="limaThirdStudentStatsTable">
-                <table class="lima-third-student-stats">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>% Completado</th>
-                        <th>Duracion del Programa</th>
-                    </tr>
-                    <tr>
-                    </tr>
-                </table>
-            </section>
-            <section id="limaFourthStudentStatsTable">
-                <table class="lima-fourth-student-stats">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>% Completado</th>
-                        <th>Duracion del Programa</th>
-                    </tr>
-                </table>
-            </section>
-            <section id="limaFifthStudentStatsTable">
-                <table class="lima-fifth-student-stats">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>% Completado</th>
-                        <th>Duracion del Programa</th>
-                    </tr>
-                </table>
-            </section>
+                <section id="limaThirdStudentStatsTable">
+                    <table class="lima-third-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                        <tr>
+                            <td id="limaThirdName" class="lima-third-name"></td>
+                            <td id="limaThirdProgress" class="lima-third-progress"></td>
+                            <td id="limaThirdDuration" class="lima-third-duration"></td>
+                        </tr>
+                    </table>
+                </section>
+                <section id="limaFourthStudentStatsTable">
+                    <table class="lima-fourth-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                        <tr>
+                            <td id="limaFourthName" class="lima-fourth-name"></td>
+                            <td id="limaFourthProgress" class="lima-fourth-progress"></td>
+                            <td id="limaFourthDuration" class="lima-fourth-duration"></td>
+                        </tr>
+                    </table>
+                </section>
+                <section id="limaFifthStudentStatsTable">
+                    <table class="lima-fifth-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                        <tr>
+                            <td id="limaFifthName" class="lima-fifth-name"></td>
+                            <td id="limaFifthProgress" class="lima-fifth-progress"></td>
+                            <td id="limaFifthDuration" class="lima-fifth-duration"></td>
+                        </tr>
+                    </table>
+                </section>
             </article>
             <!-- Mexico's stat tables-->
             <article id="mexicoTables">
-            <section id="mexicoThirdStudentStatsTable">
+                <section id="mexicoThirdStudentStatsTable">
                     <table class="mexico-third-student-stats">
                         <tr>
                             <th>Nombre</th>
                             <th>% Completado</th>
                             <th>Duracion del Programa</th>
                         </tr>
+                        <tr>
+                            <td id="mexicoThirdName" class="mexico-third-name"></td>
+                            <td id="mexicoThirdProgress" class="mexico-third-progress"></td>
+                            <td id="mexicoThirdDuration" class="mexico-third-duration"></td>
+                        </tr>
                     </table>
                 </section>
-            <section id="mexicoFourthStudentStatsTable">
+                <section id="mexicoFourthStudentStatsTable">
                     <table class="mexico-fourth-student-stats">
                         <tr>
                             <th>Nombre</th>
                             <th>% Completado</th>
                             <th>Duracion del Programa</th>
                         </tr>
+                        <tr>
+                            <td id="mexicoFourthName" class="mexico-fourth-name"></td>
+                            <td id="mexicoFourthProgress" class="mexico-fourth-progress"></td>
+                            <td id="mexicoFourthDuration" class="mexico-fourth-duration"></td>
+                        </tr>
                     </table>
                 </section>
-            <section id="mexicoFifthStudentStatsTable">
+                <section id="mexicoFifthStudentStatsTable">
                     <table class="mexico-fifth-student-stats">
                         <tr>
                             <th>Nombre</th>
                             <th>% Completado</th>
                             <th>Duracion del Programa</th>
                         </tr>
+                        <tr>
+                            <td id="mexicoFifthName" class="mexico-fifth-name"></td>
+                            <td id="mexicoFifthProgress" class="mexico-fifth-progress"></td>
+                            <td id="mexicoFifthDuration" class="mexico-fifth-duration"></td>
+                        </tr>
                     </table>
                 </section>
-                </article>
-                <!-- Chile's students stats -->
-                <article id="chileTables">
+            </article>
+            <!-- Chile's students stats -->
+            <article id="chileTables">
                 <section id="chileThirdStudentStatsTable">
-                        <table class="chile-third-student-stats">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>% Completado</th>
-                                <th>Duracion del Programa</th>
-                            </tr>
-                        </table>
-                    </section>
+                    <table class="chile-third-student-stats">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>% Completado</th>
+                            <th>Duracion del Programa</th>
+                        </tr>
+                        <tr>
+                            <td id="chileThirdName" class="chile-third-name"></td>
+                            <td id="chileThirdProgress" class="chile-third-progress"></td>
+                            <td id="chileThirdDuration" class="chile-third-duration"></td>
+                        </tr>
+                    </table>
+                </section>
                 <section id="chileFourthStudentStatsTable">
                     <table class="chile-fourth-student-stats">
                         <tr>
@@ -180,8 +214,13 @@
                             <th>% Completado</th>
                             <th>Duracion del Programa</th>
                         </tr>
+                        <tr>
+                            <td id="chileFourthName" class="chile-fourth-name"></td>
+                            <td id="chileFourthProgress" class="chile-fourth-progress"></td>
+                            <td id="chileFourthDuration" class="chile-fourth-duration"></td>
+                        </tr>
                     </table>
-                    </section>
+                </section>
                 <section id="chileFifthStudentStatsTable">
                     <table class="chile-fifth-student-stats">
                         <tr>
@@ -189,22 +228,22 @@
                             <th>% Completado</th>
                             <th>Duracion del Programa</th>
                         </tr>
-                    </table><br>
+                        <tr>
+                            <td id="chileFifthName" class="chile-fifth-name"></td>
+                            <td id="chileFifthProgress" class="chile-fifth-progress"></td>
+                            <td id="chileFifthDuration" class="chile-fifth-duration"></td>
+                        </tr>
+                    </table>
                 </section>
-                </article>
+            </article>
         </article>
     </div>
-<br><h2>.</h2><br></div>
+    <br>
+    <h2>.</h2><br>
 
-    <script src="actualdata.js"></script>
+    <script src="data.js"></script>
     <script src="main.js"></script>
     <img src="imagenes/Corchetes verdes.png" id="corchetes" alt="corchetes verdes" ​align=""><br>
 </body>
 
 </html>
-
-
-
-
-
-
