@@ -31,10 +31,6 @@ let limaArticle = document.getElementById('limaTables');
 let mexicoArticle = document.getElementById('mexicoTables');
 let chileArticle = document.getElementById('chileTables');
 let studentsArticle = document.getElementById('studentStatsTable');
-
-
-
-
 // Table position of Lima's generations and their Array Length (Total students of each generation)
 let limaFifthLength = document.getElementById('limaFifth');
 let limaFourthLength = document.getElementById('limaFourth');
