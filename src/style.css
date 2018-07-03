@@ -80,7 +80,7 @@ input {
     font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
     background-color: rgba(86, 245, 154);
-    border-color:;
+    /* border-color:; */
     border-radius: 4px;
     font-size: 3vw;
 }
