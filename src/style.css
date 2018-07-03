@@ -3,13 +3,16 @@ body {
     padding: 0%;
     width: 100%;
     height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 6px;
+    font-size: 4vw;
 }
 
 h2 {
     position: relative;
-    font-family: 'Raleway';
-    letter-spacing: 4px;
-    font-size: 3vw;
+    font-family: 'Bitter', serif;
+    letter-spacing: 6px;
+    font-size: 4vw;
     color: white;
     text-align: center;
     background-color: rgba(255, 229, 33);
@@ -41,7 +44,6 @@ h2 {
 }
 
 p {
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
     letter-spacing: 0.3px;
     color: black;
     text-align: center;
@@ -62,7 +64,6 @@ input {
 #btnSizing {
     width: 40vw;
     height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
     background-color: rgba(86, 245, 154);
     border-radius: 4px;
@@ -75,7 +76,6 @@ input {
     left: 35%;
     width: 30vw;
     height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
     background-color: rgba(86, 245, 154);
     /* border-color:; */
@@ -95,7 +95,6 @@ input {
     left: 35%;
     width: 30vw;
     height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
     background-color: rgba(86, 245, 154);
     border-radius: 4px;
@@ -113,7 +112,6 @@ input {
     left: 35%;
     width: 30vw;
     height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
     background-color: rgba(86, 245, 154);
     border-color: black;
