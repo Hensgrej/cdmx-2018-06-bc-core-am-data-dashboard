@@ -7,7 +7,7 @@ body {
 
 h2 {
     position: relative;
-    font-family: 'Raleway';
+    font-family: 'Bitter';
     letter-spacing: 4px;
     font-size: 3vw;
     color: white;
@@ -17,17 +17,19 @@ h2 {
 }
 
 #logo {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70vw;
+    position: relative;
+    left: 25%;
+    margin: auto;
+    width: 50vw;
     padding: 0%;
     margin: 0%;
 }
 
 #triangulo {
-    margin-left: auto;
     margin-right: auto;
     width: 8%;
+    position: relative;
+    left: 40.7%;
     padding: 0%;
     margin: 0%;
 }
@@ -41,32 +43,37 @@ h2 {
 }
 
 p {
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Open Sans';
     letter-spacing: 0.3px;
-    color: black;
+    color: #8190A5;
     text-align: center;
-    font-size: 3vw;
+    font-size: 2vw;
 }
 
 input {
-    width: 50vw;
-    height: 10vw;
-    left: 25%;
+    width: 30vw;
+    height: 5vw;
+    position:relative;
+    left: 20%;
+    font-family: 'Open Sans';
     align-items: center;
-    color: black;
+    color:#8190A5;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 3vw;
+    font-size: 2.5vw;
 }
 
 #btnSizing {
-    width: 40vw;
-    height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    width: 20vw;
+    height: 5vw;
+    position: relative;
+    left: 41%;
+    font-family: 'Open Sans';
     text-align: center;
     background-color: rgba(86, 245, 154);
+    color: white;
     border-radius: 4px;
-    font-size: 3vw;
+    font-size: 2.5vw;
 }
 
 #lima,
@@ -75,10 +82,9 @@ input {
     left: 35%;
     width: 30vw;
     height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Open Sans';
     text-align: center;
     background-color: rgba(86, 245, 154);
-    /* border-color:; */
     border-radius: 4px;
     font-size: 3vw;
 }
@@ -92,15 +98,15 @@ input {
 #btnThirdChile,
 #btnFourthChile,
 #btnFifthChile {
-    left: 35%;
-    width: 30vw;
+    left: 30%;
+    width: 25vw;
     height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    margin: 40px;
+    font-family: 'Open Sans';
     text-align: center;
     background-color: rgba(86, 245, 154);
     border-radius: 4px;
-    font-size: 3vw;
-    float: left;
+    font-size: 2.5vw;
 }
 
 .lima-third-name {
@@ -113,10 +119,10 @@ input {
     left: 35%;
     width: 30vw;
     height: 10vw;
-    font-family: museo-sans, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Open Sans';
     text-align: center;
     background-color: rgba(86, 245, 154);
-    border-color: black;
+    border-color: #8190A5;
     border-radius: 4px;
     font-size: 3vw;
 }
