@@ -77,7 +77,7 @@ window.data = {
                 trProgram3.appendChild(txtProgram3);
                 document.getElementById('limaFifthProgress').appendChild(trProgram3);
                 let trDuration3 = document.createElement('TR');
-                let txtDuration3 = document.createTextNode(limaFifthLength);
+                let txtDuration3 = document.createTextNode(limaFifthStudentLength);
                 trDuration3.appendChild(txtDuration3);
                 document.getElementById('limaFifthDuration').appendChild(trDuration3);
             }
