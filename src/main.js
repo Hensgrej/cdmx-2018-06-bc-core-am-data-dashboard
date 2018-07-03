@@ -106,7 +106,7 @@ studentsArticle.style.display = "none";
 btnSubmit.addEventListener("click", () => {
     loginSection.style.display = "none";
     btnsSection.style.display = "block";
-    data.computeStudentStats()
+    data.computeStudentsStats()
         // If the user chooses Lima
     btnLima.addEventListener("click", () => {
             generationTable.style.display = "block"
