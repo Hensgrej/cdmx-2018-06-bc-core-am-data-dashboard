@@ -19,6 +19,7 @@ window.data = {
             let chileStudentsThirdGeneration = data.santiago.generacion.tercera.estudiantes;
             let chileStudentsFourthGeneration = data.santiago.generacion.cuarta.estudiantes;
             let chileStudentsFifthGeneration = data.santiago.generacion.quinta.estudiantes;
+            console.log(chileStudentsFifthGeneration);
             // End of Chile Students
             // Start of Lima Student Stats
             let limaThirdStats = data.lima.generacion.tercera.estudiantes;
@@ -28,6 +29,7 @@ window.data = {
                 limaThirdStudentProgress = data.lima.generacion.tercera.estudiantes[i].progreso;
                 limaThirdProgramLength = data.lima.generacion.tercera.estudiantes[i].progreso.duracionPrograma;
                 limaThirdProgramPercentage = data.lima.generacion.tercera.estudiantes[i].progreso.porcentajeCompletado;
+<<<<<<< HEAD
                 let trName = document.createElement('TR');
                 let txtName = document.createTextNode(limaThirdEachStudentName);
                 trName.appendChild(txtName);
@@ -41,6 +43,9 @@ window.data = {
                 trDuration.appendChild(txtDuration);
                 document.getElementById('limaThirdDuration').appendChild(trDuration);
             }
+=======
+            }   
+>>>>>>> 655b4f36d5ebb246d751b1c122d59b3d2a485ab3
             let limaFourthStats = data.lima.generacion.cuarta.estudiantes;
             for (let j = 0; j < limaFourthStats.length; j++) {
                 limaFourthEachStudentName = data.lima.generacion.cuarta.estudiantes[j].nombre;
@@ -221,6 +226,8 @@ window.data = {
             returnStats = {
                 students: []
             }
+            console.log(testReturn.students[8]);
+            //console.log(testReturn);
             return testReturn;
 
         })

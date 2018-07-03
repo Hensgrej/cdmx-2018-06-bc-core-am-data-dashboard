@@ -32,9 +32,12 @@ let mexicoArticle = document.getElementById('mexicoTables');
 let chileArticle = document.getElementById('chileTables');
 let studentsArticle = document.getElementById('studentStatsTable');
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 655b4f36d5ebb246d751b1c122d59b3d2a485ab3
 // Table position of Lima's generations and their Array Length (Total students of each generation)
 let limaFifthLength = document.getElementById('limaFifth');
 let limaFourthLength = document.getElementById('limaFourth');
@@ -125,6 +128,7 @@ btnSubmit.addEventListener("click", () => {
                 limaTable.style.display = "none";
                 studentsArticle.style.display = "block"
                 mexicoArticle.style.display = "none";
+<<<<<<< HEAD
                 chileArticle.style.display = "none";
                 limaFourthStatsTable.style.display = "none";
                 limaFifthStatsTable.style.display = "none";
@@ -149,6 +153,10 @@ btnSubmit.addEventListener("click", () => {
                 limaFourthStatsTable.style.display = "none";
                 limaFifthStatsTable.style.display = "block";
                 limaArticle.style.display = "block";
+=======
+                chileArticle.style.display="none";
+                
+>>>>>>> 655b4f36d5ebb246d751b1c122d59b3d2a485ab3
             })
 
         })
