@@ -130,6 +130,27 @@ btnSubmit.addEventListener("click", () => {
                 limaFifthStatsTable.style.display = "none";
                 limaArticle.style.display = "block";
             })
+            btnLimaFourth.addEventListener("click", () => {
+                limaTable.style.display = "none";
+                studentsArticle.style.display = "block"
+                mexicoArticle.style.display = "none";
+                chileArticle.style.display = "none";
+                limaFourthStatsTable.style.display = "block";
+                limaThirdStatsTable.style.display = "none";
+                limaFifthStatsTable.style.display = "none";
+                limaArticle.style.display = "block";
+            })
+            btnLimaFifth.addEventListener("click", () => {
+                limaTable.style.display = "none";
+                studentsArticle.style.display = "block"
+                mexicoArticle.style.display = "none";
+                chileArticle.style.display = "none";
+                limaThirdStatsTable.style.display = "none";
+                limaFourthStatsTable.style.display = "none";
+                limaFifthStatsTable.style.display = "block";
+                limaArticle.style.display = "block";
+            })
+
         })
         // User chooses Mexico
     btnMexico.addEventListener("click", () => {
@@ -141,7 +162,36 @@ btnSubmit.addEventListener("click", () => {
             chileTable.style.display = "none";
             mexicoTable.style.display = "block";
             data.printStudentsMexico();
-
+            btnMexicoThird.addEventListener("click", () => {
+                limaTable.style.display = "none";
+                studentsArticle.style.display = "block"
+                mexicoArticle.style.display = "block";
+                chileArticle.style.display = "none";
+                mexicoThirdStatsTable.style.display = "block";
+                mexicoFourthStatsTable.style.display = "none";
+                mexicoFifthStatsTable.style.display = "none";
+                limaArticle.style.display = "none";
+            })
+            btnMexicoFourth.addEventListener("click", () => {
+                limaTable.style.display = "none";
+                studentsArticle.style.display = "block"
+                mexicoArticle.style.display = "block";
+                chileArticle.style.display = "none";
+                mexicoThirdStatsTable.style.display = "none";
+                mexicoFourthStatsTable.style.display = "block";
+                mexicoFifthStatsTable.style.display = "none";
+                limaArticle.style.display = "none";
+            })
+            btnMexicoFifth.addEventListener("click", () => {
+                limaTable.style.display = "none";
+                studentsArticle.style.display = "block"
+                mexicoArticle.style.display = "block";
+                chileArticle.style.display = "none";
+                mexicoThirdStatsTable.style.display = "none";
+                mexicoFourthStatsTable.style.display = "none";
+                mexicoFifthStatsTable.style.display = "block";
+                limaArticle.style.display = "none";
+            })
         })
         // User chooses Chile
     btnChile.addEventListener("click", () => {
@@ -153,5 +203,36 @@ btnSubmit.addEventListener("click", () => {
         limaTable.style.display = "none";
         chileTable.style.display = "block";
         data.printStudentsChile();
+        btnChileThird.addEventListener("click", () => {
+            limaTable.style.display = "none";
+            studentsArticle.style.display = "block"
+            mexicoArticle.style.display = "none";
+            chileArticle.style.display = "block";
+            chileThirdStatsTable.style.display = "block";
+            chileFourthStatsTable.style.display = "none";
+            chileFifthStatsTable.style.display = "none";
+            limaArticle.style.display = "none";
+        })
+        btnChileFourth.addEventListener("click", () => {
+            limaTable.style.display = "none";
+            studentsArticle.style.display = "block"
+            mexicoArticle.style.display = "none";
+            chileArticle.style.display = "block";
+            chileThirdStatsTable.style.display = "none";
+            chileFourthStatsTable.style.display = "block";
+            chileFifthStatsTable.style.display = "none";
+            limaArticle.style.display = "none";
+        })
+        btnChileFifth.addEventListener("click", () => {
+            limaTable.style.display = "none";
+            studentsArticle.style.display = "block"
+            mexicoArticle.style.display = "none";
+            chileArticle.style.display = "block";
+            chileThirdStatsTable.style.display = "none";
+            chileFourthStatsTable.style.display = "none";
+            chileFifthStatsTable.style.display = "block";
+            limaArticle.style.display = "none";
+        })
+
     })
-});
+})
