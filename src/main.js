@@ -6,8 +6,10 @@ const resultDiv = document.getElementById('result');
 const third = document.getElementById('tercera');
 const fourth = document.getElementById('cuarta');
 const fifth = document.getElementById('quinta');
-const thirdSubject = document.getElementById('terceraSubtemas')
+const thirdSubject = document.getElementById('subtemasTercera');
+const thirdSubtopic = document.getElementById('subtopicsTercera');
 
+// Main function
 laboratoriaData = (data) => {
     // Each button prints all three generations from all campuses with each students name, mail and progress.
     btnLima.addEventListener("click", () => {
@@ -155,24 +157,58 @@ laboratoriaData = (data) => {
         fourth.innerHTML = fourthGeneration;
         fifth.innerHTML = fifthGeneration;
 
-        thirdGenerationSubjects = "";
+        let thirdGenerationSubjects = "";
         let subjects = [];
         let subtopics = [];
-        // Showing Subject Duration for each subject for each student
+        let thirdGenerationSubtopics = "";
+        // Showing Subject Stats for each subject for each student
         for (let i = 0; i < stgoThirdStudents.length; i++) {
             let stgoSubjects = stgoThirdStudents[i].progreso.temas;
             subjects = stgoSubjects;
-            for (let blah in subjects) {
+            console.log(subjects['01-Introduccion-a-programacion']);
+          
+            /*for (let blah in subjects) {
                 subtopics = subjects[blah];
-                console.log(subtopics.duracionTema);
-                thirdGenerationSubjects += ` <div class = "subjects">
-                                        <p>Duracion del Tema: ${subtopics.duracionTema}</p>
-                                        </div>`
+            let actualSubtopics = subtopics.subtemas;
+            let subName = Object.keys(actualSubtopics);
+            let subNames = "";
+            for(let i = 0; i < subName.length; i++) {
+              subNames = subName[i];
             }
+            let sub = {};
+            for(let bleh in actualSubtopics) {
+              sub = actualSubtopics[bleh];
+            }*/
+           
+                thirdGenerationSubjects += ` <div class = "subjects01">
+                                        <h2>01 Introducción a Programación</h2>
+                                        <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
+                                        <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
+                                        <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
+                                        </div>
+                                        <div class = "subjects02">
+                                        <h2>02 Variables y tipos de datos</h2>
+                                        <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
+                                        <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
+                                        <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
+                                        </div>
+                                        <div class = "subjects03">
+                                        <h2>03 UX</h2>
+                                        <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
+                                        <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
+                                        <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
+                                        </div>`
+                /*thirdGenerationSubtopics += ` <div class = "subtopics">
+                                        <p>Completado: ${sub.completado}</p>
+                                        <p>Duracion Subtema: ${sub.duracionSubtema}</p>
+                                        <p>Tipo: ${sub.tipo}</p>
+                                        <p>Subtemas Completados: ${subtopics.subtemasCompletados}</p>
+                                        <p>Subtemas Totales: ${subtopics.subtemasTotales}</p>
+                                        </div>`*/
+                                      }
             thirdSubject.innerHTML = thirdGenerationSubjects;
-        }
-
-    })
+            thirdSubtopic.innerHTML = thirdGenerationSubtopics;
+        })
 }
 
 // Calling fetch in data.js
