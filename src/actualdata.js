@@ -1,18 +1,5 @@
-<<<<<<< HEAD
-window.dashboard = {
-    computeStudentsStats: (laboratoria) => {
-        laboratoria = 'https://api.myjson.com/bins/13lpdy';
-        fetch(laboratoria).then((data) => {
-                return data.json();
-            })
-            .then((data) => {
-                laboratoriaData(data);
-            }).catch((err) => {
-                console.log('Error');
-            })
-=======
 window.data = {
-    computeStudentsStats: (laboratoria) => {
+    computeStudentStats: (laboratoria) => {
         laboratoria = 'https://api.myjson.com/bins/13lpdy';
         // Calling API with JSON data
         fetch(laboratoria).then((response) => {
@@ -255,6 +242,5 @@ window.data = {
     },
     generationStats: () => {
         let
->>>>>>> e9b47f1a392d82af754182d295cc58fbf24a581a
     }
 }
