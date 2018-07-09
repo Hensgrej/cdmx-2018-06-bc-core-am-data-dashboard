@@ -1,0 +1,1 @@
+dashboardData.dataLaboratoria();
