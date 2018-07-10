@@ -2,10 +2,10 @@ body {
     margin: 0%;
     padding: 0%;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font-family: 'Open Sans', sans-serif;
-    letter-spacing: 6px;
-    font-size: 4vw;
+    letter-spacing: 6%;
+    font-size: 4%;
 }
 
 h2 {
@@ -21,18 +21,18 @@ h2 {
 
 #logo {
     position: relative;
-    left: 25%;
+    left: 27.5%;
     margin: auto;
-    width: 50vw;
+    width: 45vw;
     padding: 0%;
     margin: 0%;
 }
 
 #triangulo {
     margin-right: auto;
-    width: 8%;
+    width: 7%;
     position: relative;
-    left: 40%;
+    left: 47.4%;
     padding: 0%;
     margin: 0%;
 }
