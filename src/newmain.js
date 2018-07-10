@@ -1,15 +1,34 @@
-const btnLima = document.getElementById('btnLima');
-const btnMexico = document.getElementById('btnMexico');
-const btnStgo = document.getElementById('btnStgo');
-const resultDiv = document.getElementById('result');
+const laboratoria = 'https://api.myjson.com/bins/13lpdy';
+let btnLogin = document.getElementById('btnLogin');
 
-laboratoriaData = (data) => {
-    let generation = [];
-    btnLima.addEventListener("click", () => {
-        const infoLima = Object.values(data)[0];
-        generation += infoLima;
-})
-console.log(generation);
-}
-dashboard.computeStudentsStats();
+window.dashboardData = {
+  dataLaboratoria: (laboratoria) => {
+    fetch(laboratoria).then((data) => {
+      return data.json();
+    })
+      .then((data) => {
+        let dataValues = (Object.values(data));
+        dashboardCompute.computeStudentsStats(dataValues);
+        dashboardPrint.computeGenerationStats(dataValues);
+        return dataValues;
+      })
+      .then((dataValues) => {
+        btnLogin.addEventListener('click', () => {
+          printStudents(dataValues);
+        });
+      }).catch((err) => {
+        console.log('Error en laboratoriaData');
+      });
+  }
+};
 
+dashboardData.dataLaboratoria(laboratoria);
+
+const printStudents = (dataValues) => {
+  let fourthLima = dataValues[0].generacion.cuarta.estudiantes;
+  let fourthLimaStudents = "";
+  for (let i = 0; i < fourthLima.length; i++) {
+    fourthLimaStudents += `<p>${Object.values(fourthLima[i])}</p>`;
+    document.getElementById('btnsCampus').innerHTML = fourthLimaStudents;
+  }
+};
