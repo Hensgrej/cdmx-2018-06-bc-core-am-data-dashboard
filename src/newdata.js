@@ -315,7 +315,6 @@ window.dashboardPrint = {
     //let sumStgoThird = percentageThirdStgo.reduce(sum);
     //generations.average.push(Math.round(sumStgoThird / percentageThirdStgo.length));
   
-    //console.log(generations)
-
+    //console.log(generations);
   }
 };
