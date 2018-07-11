@@ -32,17 +32,21 @@ h2 {
     margin-right: auto;
     width: 8%;
     position: relative;
-    left: 40.7%;
+    left: 40%;
     padding: 0%;
     margin: 0%;
+}
+
+.line {
+    width: 100%;
+    background-color: rgba(255, 229, 33);
+    height: 4vw;
 }
 
 #corchetes {
     margin-left: auto;
     margin-right: auto;
     width: 30%;
-    padding: 0%;
-    margin: 0%;
 }
 
 p {
@@ -56,17 +60,17 @@ p {
 input {
     width: 30vw;
     height: 5vw;
-    position:relative;
+    position: relative;
     left: 20%;
     font-family: 'Open Sans';
     align-items: center;
-    color:#8190A5;
+    color: #8190A5;
     border-radius: 4px;
     cursor: pointer;
     font-size: 2.5vw;
 }
 
-#btnSizing {
+#btnLogin {
     width: 20vw;
     height: 5vw;
     position: relative;
@@ -79,39 +83,43 @@ input {
     font-size: 2.5vw;
 }
 
-#lima,
-#mexico,
-#chile {
-    left: 35%;
-    width: 30vw;
-    height: 10vw;
-    font-family: 'Open Sans';
-    text-align: center;
-    background-color: rgba(86, 245, 154);
-    border-radius: 4px;
-    color: white;
-    font-size: 2.5vw;
+#limaFourthNames p {
+    font-size: 0.5vw;
+    float: left;
 }
 
-#btnThirdLima,
-#btnFourthLima,
-#btnFifthLima,
-#btnThirdMexico,
-#btnFourthMexico,
-#btnFifthMexico,
-#btnThirdChile,
-#btnFourthChile,
-#btnFifthChile {
+.no-style {
+    border: none;
+    color: none;
+    text-decoration: none;
+    display: block;
+    font-size: 1.5vw;
+    position: relative;
+}
+
+#limaCompletedPercentageThird {
+    position: absolute;
     left: 30%;
-    width: 25vw;
-    height: 10vw;
+    top: 80%;
+}
+
+#limaDurationPercentageThird {
+    position: absolute;
+    left: 60%;
+    top: 80%;
+}
+
+button {
+    left: 50%;
+    width: 15vw;
+    height: 5vw;
     margin: 40px;
     font-family: 'Open Sans';
     text-align: center;
     color: white;
     background-color: rgba(86, 245, 154);
-    border-radius: 4px;
-    font-size: 2.5vw;
+    border-radius: 3px;
+    font-size: 2vw;
 }
 
 .lima-third-name {

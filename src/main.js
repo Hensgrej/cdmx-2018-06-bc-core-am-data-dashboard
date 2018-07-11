@@ -1,234 +1,207 @@
-// Accesing all button and table IDs
-let btnSubmit = document.getElementById('btnSizing');
-let loginSection = document.getElementById('login');
-let btnsSection = document.getElementById('btnsSedes');
-let generationTable = document.getElementById('campusesGenerationTables')
-let btnLima = document.getElementById('lima');
-let btnMexico = document.getElementById('mexico');
-let btnChile = document.getElementById('chile');
-let limaTable = document.getElementById('limaGenerationsTable');
-let mexicoTable = document.getElementById('mexicoGenerationsTable');
-let chileTable = document.getElementById('chileGenerationsTable');
-let btnLimaThird = document.getElementById('btnThirdLima');
-let btnLimaFourth = document.getElementById('btnFourthLima');
-let btnLimaFifth = document.getElementById('btnFifthLima');
-let btnMexicoThird = document.getElementById('btnThirdMexico');
-let btnMexicoFourth = document.getElementById('btnFourthMexico');
-let btnMexicoFifth = document.getElementById('btnFifthMexico');
-let btnChileThird = document.getElementById('btnThirdChile');
-let btnChileFourth = document.getElementById('btnFourthChile');
-let btnChileFifth = document.getElementById('btnFifthChile');
-let limaThirdStatsTable = document.getElementById('limaThirdStudentStatsTable');
-let limaFourthStatsTable = document.getElementById('limaFourthStudentStatsTable');
-let limaFifthStatsTable = document.getElementById('limaFifthStudentStatsTable');
-let mexicoThirdStatsTable = document.getElementById('mexicoThirdStudentStatsTable');
-let mexicoFourthStatsTable = document.getElementById('mexicoFourthStudentStatsTable');
-let mexicoFifthStatsTable = document.getElementById('mexicoFifthStudentStatsTable');
-let chileThirdStatsTable = document.getElementById('chileThirdStudentStatsTable');
-let chileFourthStatsTable = document.getElementById('chileFourthStudentStatsTable');
-let chileFifthStatsTable = document.getElementById('chileFifthStudentStatsTable');
-let limaArticle = document.getElementById('limaTables');
-let mexicoArticle = document.getElementById('mexicoTables');
-let chileArticle = document.getElementById('chileTables');
-let studentsArticle = document.getElementById('studentStatsTable');
-// Table position of Lima's generations and their Array Length (Total students of each generation)
-let limaFifthLength = document.getElementById('limaFifth');
-let limaFourthLength = document.getElementById('limaFourth');
-let limaThirdLength = document.getElementById('limaThird');
+const laboratoria = 'https://api.myjson.com/bins/13lpdy';
+const login = document.getElementById('login');
+const btnLogin = document.getElementById('btnLogin');
+const btnsCampus = document.getElementById('btnsCampus');
+const nameParagraph = document.getElementById('name');
+// Lima HTML elements
+const btnLima = document.getElementById('btnLima');
+const btnLimaThird = document.getElementById('btnLimaThird');
+const btnLimaFourth = document.getElementById('btnLimaFourth');
+const btnLimaFifth = document.getElementById('btnLimaFifth');
+const limaThirdInfo = document.getElementById('limaThirdInfo');
+const limaFourthInfo = document.getElementById('limaFourthInfo');
+const limaFifthInfo = document.getElementById('limaFifthInfo');
+const articleLima = document.getElementById('lima');
+const limaThirdNames = document.getElementById('limaNamesThird');
+const limaFourthNames = document.getElementById('limaNamesFourth');
+const limaFifthNames = document.getElementById('limaNamesFifth');
+const fourthLimaCompletedPercentage = document.getElementById('limaCompletedPercentageFourth');
+const limaDurationPercentageFourth = document.getElementById('limaDurationPercentageFourth');
+const thirdLimaCompletedPercentage = document.getElementById('limaCompletedPercentageThird');
+const limaDurationPercentageThird = document.getElementById('limaDurationPercentageThird');
+const fifthLimaCompletedPercentage = document.getElementById('limaCompletedPercentageFifth');
+const limaDurationPercentageFifth = document.getElementById('limaDurationPercentageFifth');
+// Mexico HTML elements
+const btnMexico = document.getElementById('btnMexico');
+const btnMexicoThird = document.getElementById('btnMexicoThird');
+const btnMexicoFourth = document.getElementById('btnMexicoFourth');
+const btnMexicoFifth = document.getElementById('btnMexicoFifth');
+const mexicoThirdInfo = document.getElementById('mexicoThirdInfo');
+const mexicoFourthInfo = document.getElementById('mexicoFourthInfo');
+const mexicoFifthInfo = document.getElementById('mexicoFifthInfo');
+const articleMexico = document.getElementById('mexico');
+const mexicoThirdNames = document.getElementById('mexicoNamesThird');
+const mexicoFourthNames = document.getElementById('mexicoNamesFourth');
+const mexicoFifthNames = document.getElementById('mexicoNamesFifth');
+const fourthMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageFourth');
+const mexicoDurationPercentageFourth = document.getElementById('mexicoDurationPercentageFourth');
+const thirdMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageThird');
+const mexicoDurationPercentageThird = document.getElementById('mexicoDurationPercentageThird');
+const fifthMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageFifth');
+const mexicoDurationPercentageFifth = document.getElementById('mexicoDurationPercentageFifth');
 
-// Table position of Mexico's generations and their Array Length (Total students of each generation)
-let mexicoFifthLength = document.getElementById('mexicoFifth');
-let mexicoFourthLength = document.getElementById('mexicoFourth');
-let mexicoThirdLength = document.getElementById('mexicoThird');
-
-// Table position of Chile's generations and their Array Length (Total students of each generation)
-let chileFifthLength = document.getElementById('chileFifth');
-let chileFourthLength = document.getElementById('chileFourth');
-let chileThirdLength = document.getElementById('chileThird');
-
-// Storing Data from data.js
-let testReturn = {};
-
-// Storing Lima's generational stats
-let limaThirdEachStudentName = "";
-let limaThirdEachStudentMail = "";
-let limaThirdStudentProgress = "";
-let limaThirdProgramLength = "";
-let limaThirdProgramPercentage = "";
-let limaFourthEachStudentName = "";
-let limaFourthEachStudentMail = "";
-let limaFourthStudentProgress = "";
-let limaFourthProgramLength = "";
-let limaFourthProgramPercentage = "";
-let limaFifthEachStudentName = "";
-let limaFifthEachStudentMail = "";
-let limaFifthStudentProgress = "";
-let limaFifthProgramLength = "";
-let limaFifthProgramPercentage = "";
-// Storing Mexico's generational stats
-let mexicoThirdEachStudentName = "";
-let mexicoThirdEachStudentMail = "";
-let mexicoThirdStudentProgress = "";
-let mexicoThirdProgramLength = "";
-let mexicoThirdProgramPercentage = "";
-let mexicoFourthEachStudentName = "";
-let mexicoFourthEachStudentMail = "";
-let mexicoFourthStudentProgress = "";
-let mexicoFourthProgramLength = "";
-let mexicoFourthProgramPercentage = "";
-let mexicoFifthEachStudentName = "";
-let mexicoFifthEachStudentMail = "";
-let mexicoFifthStudentProgress = "";
-let mexicoFifthProgramLength = "";
-let mexicoFifthProgramPercentage = "";
-// Storing Chile's generational stats
-let chileThirdEachStudentName = "";
-let chileThirdEachStudentMail = "";
-let chileThirdStudentProgress = "";
-let chileThirdProgramLength = "";
-let chileThirdProgramPercentage = "";
-let chileFourthEachStudentName = "";
-let chileFourthEachStudentMail = "";
-let chileFourthStudentProgress = "";
-let chileFourthProgramLength = "";
-let chileFourthProgramPercentage = "";
-let chileFifthEachStudentName = "";
-let chileFifthEachStudentMail = "";
-let chileFifthStudentProgress = "";
-let chileFifthProgramLength = "";
-let chileFifthProgramPercentage = "";
-// Hiding non necessary HTML elements for Initial Home Page
-generationTable.style.display = "none";
-btnsSection.style.display = "none";
-studentsArticle.style.display = "none";
-
-// Calling event function to kickstart the rest of the website
-btnSubmit.addEventListener("click", () => {
-    loginSection.style.display = "none";
-    btnsSection.style.display = "block";
-    data.computeStudentsStats()
-        // If the user chooses Lima
-    btnLima.addEventListener("click", () => {
-            generationTable.style.display = "block"
-            chileTable.style.display = "none";
-            mexicoTable.style.display = "none"
-            btnChile.style.display = "none";
-            btnMexico.style.display = "none";
-            btnLima.style.display = "none";
-            limaTable.style.display = "block";
-            data.printStudentsLima();
-            btnLimaThird.addEventListener("click", () => {
-                limaTable.style.display = "none";
-                studentsArticle.style.display = "block"
-                mexicoArticle.style.display = "none";
-                chileArticle.style.display = "none";
-                limaFourthStatsTable.style.display = "none";
-                limaFifthStatsTable.style.display = "none";
-                limaArticle.style.display = "block";
-            })
-            btnLimaFourth.addEventListener("click", () => {
-                limaTable.style.display = "none";
-                studentsArticle.style.display = "block"
-                mexicoArticle.style.display = "none";
-                chileArticle.style.display = "none";
-                limaFourthStatsTable.style.display = "block";
-                limaThirdStatsTable.style.display = "none";
-                limaFifthStatsTable.style.display = "none";
-                limaArticle.style.display = "block";
-            })
-            btnLimaFifth.addEventListener("click", () => {
-                limaTable.style.display = "none";
-                studentsArticle.style.display = "block"
-                mexicoArticle.style.display = "none";
-                chileArticle.style.display = "none";
-                limaThirdStatsTable.style.display = "none";
-                limaFourthStatsTable.style.display = "none";
-                limaFifthStatsTable.style.display = "block";
-                limaArticle.style.display = "block";
-            })
-
-        })
-        // User chooses Mexico
-    btnMexico.addEventListener("click", () => {
-            generationTable.style.display = "block"
-            btnChile.style.display = "none";
-            btnMexico.style.display = "none";
-            btnLima.style.display = "none";
-            limaTable.style.display = "none";
-            chileTable.style.display = "none";
-            mexicoTable.style.display = "block";
-            data.printStudentsMexico();
-            btnMexicoThird.addEventListener("click", () => {
-                limaTable.style.display = "none";
-                studentsArticle.style.display = "block"
-                mexicoArticle.style.display = "block";
-                chileArticle.style.display = "none";
-                mexicoThirdStatsTable.style.display = "block";
-                mexicoFourthStatsTable.style.display = "none";
-                mexicoFifthStatsTable.style.display = "none";
-                limaArticle.style.display = "none";
-            })
-            btnMexicoFourth.addEventListener("click", () => {
-                limaTable.style.display = "none";
-                studentsArticle.style.display = "block"
-                mexicoArticle.style.display = "block";
-                chileArticle.style.display = "none";
-                mexicoThirdStatsTable.style.display = "none";
-                mexicoFourthStatsTable.style.display = "block";
-                mexicoFifthStatsTable.style.display = "none";
-                limaArticle.style.display = "none";
-            })
-            btnMexicoFifth.addEventListener("click", () => {
-                limaTable.style.display = "none";
-                studentsArticle.style.display = "block"
-                mexicoArticle.style.display = "block";
-                chileArticle.style.display = "none";
-                mexicoThirdStatsTable.style.display = "none";
-                mexicoFourthStatsTable.style.display = "none";
-                mexicoFifthStatsTable.style.display = "block";
-                limaArticle.style.display = "none";
-            })
-        })
-        // User chooses Chile
-    btnChile.addEventListener("click", () => {
-        generationTable.style.display = "block"
-        btnChile.style.display = "none";
-        btnMexico.style.display = "none";
-        btnLima.style.display = "none";
-        mexicoTable.style.display = "none";
-        limaTable.style.display = "none";
-        chileTable.style.display = "block";
-        data.printStudentsChile();
-        btnChileThird.addEventListener("click", () => {
-            limaTable.style.display = "none";
-            studentsArticle.style.display = "block"
-            mexicoArticle.style.display = "none";
-            chileArticle.style.display = "block";
-            chileThirdStatsTable.style.display = "block";
-            chileFourthStatsTable.style.display = "none";
-            chileFifthStatsTable.style.display = "none";
-            limaArticle.style.display = "none";
-        })
-        btnChileFourth.addEventListener("click", () => {
-            limaTable.style.display = "none";
-            studentsArticle.style.display = "block"
-            mexicoArticle.style.display = "none";
-            chileArticle.style.display = "block";
-            chileThirdStatsTable.style.display = "none";
-            chileFourthStatsTable.style.display = "block";
-            chileFifthStatsTable.style.display = "none";
-            limaArticle.style.display = "none";
-        })
-        btnChileFifth.addEventListener("click", () => {
-            limaTable.style.display = "none";
-            studentsArticle.style.display = "block"
-            mexicoArticle.style.display = "none";
-            chileArticle.style.display = "block";
-            chileThirdStatsTable.style.display = "none";
-            chileFourthStatsTable.style.display = "none";
-            chileFifthStatsTable.style.display = "block";
-            limaArticle.style.display = "none";
-        })
-
+window.dashboardData = {
+  dataLaboratoria: (laboratoria) => {
+    fetch(laboratoria).then((data) => {
+      return data.json();
     })
-})
+      .then((data) => {
+        let dataValues = (Object.values(data));
+        dashboardCompute.computeStudentsStats(dataValues);
+        dashboardPrint.computeGenerationStats(dataValues);
+        return dataValues;
+      })
+      .then((dataValues) => {
+        btnLogin.addEventListener('click', () => {
+          printStudents(dataValues);
+          login.style.display = 'none';
+          btnsCampus.style.display = 'block';
+        });
+      }).catch((err) => {
+        console.log('Error en laboratoriaData');
+      });
+  }
+};
+// Calling API
+dashboardData.dataLaboratoria(laboratoria);
+
+// Hiding non-necessary HTML elements
+btnsCampus.style.display = 'none';
+lima.style.display = 'none';
+mexico.style.display = 'none';
+nameParagraph.style.display = 'none';
+
+// Function with navigation path that prints students names, completed percentages and duration of program
+const printStudents = (dataValues) => {
+  btnLima.addEventListener('click', () => {
+    btnMexico.style.display = 'none';
+    btnStgo.style.display = 'none';
+    lima.style.display = 'block';
+    let thirdLima = dataValues[0].generacion.tercera.estudiantes;
+    let thirdLimaStudents = '';
+    let thirdLimaPercentages = '';
+    let thirdLimaDuration = '';
+    for (let i = 0; i < thirdLima.length; i++) {
+      let thirdLimaNames = thirdLima[i].nombre;
+      let thirdLimaCompletedPercent = thirdLima[i].progreso.porcentajeCompletado;
+      let thirdLimaProgramDuration = thirdLima[i].progreso.duracionPrograma;
+      btnLimaThird.addEventListener('click', () => {
+        limaThirdInfo.style.display = 'block';
+        btnLimaFourth.style.display = 'none';
+        btnLimaFifth.style.display = 'none';
+        thirdLimaStudents += `<buttton type="buttton" class="no-style">${thirdLimaNames}</button>`;
+        thirdLimaPercentages += `<buttton type="buttton" class="no-style">${thirdLimaCompletedPercent}%</button>`;
+        thirdLimaDuration += `<buttton type="buttton" class="no-style">${thirdLimaProgramDuration}</button>`;
+        limaThirdNames.innerHTML = thirdLimaStudents;
+        thirdLimaCompletedPercentage.innerHTML = thirdLimaPercentages;
+        limaDurationPercentageThird.innerHTML = thirdLimaDuration;
+      });
+    }
+    let fourthLima = dataValues[0].generacion.cuarta.estudiantes;
+    let fourthLimaStudents = '';
+    let fourthLimaPercentages = '';
+    let fourthLimaDuration = '';
+    for (let i = 0; i < fourthLima.length; i++) {
+      let fourthLimaNames = fourthLima[i].nombre;
+      let fourthLimaCompletedPercent = fourthLima[i].progreso.porcentajeCompletado;
+      let fourthLimaProgramDuration = fourthLima[i].progreso.duracionPrograma;
+      btnLimaFourth.addEventListener('click', () => {
+        limaFourthInfo.style.display = 'block';
+        btnLimaThird.style.display = 'none';
+        btnLimaFifth.style.display = 'none';
+        fourthLimaStudents += `<buttton type="buttton" class="no-style">${fourthLimaNames}</button>`;
+        fourthLimaPercentages += `<p>${fourthLimaCompletedPercent}%</p>`;
+        fourthLimaDuration += `<p>${fourthLimaProgramDuration}</p>`;
+        limaFourthNames.innerHTML = fourthLimaStudents;
+        fourthLimaCompletedPercentage.innerHTML = fourthLimaPercentages;
+        limaDurationPercentageFourth.innerHTML = fourthLimaDuration;
+      });
+    }
+    let fifthLima = dataValues[0].generacion.quinta.estudiantes;
+    let fifthLimaStudents = '';
+    let fifthLimaPercentages = '';
+    let fifthLimaDuration = '';
+    for (let i = 0; i < fifthLima.length; i++) {
+      let fifthLimaNames = fifthLima[i].nombre;
+      let fifthLimaCompletedPercent = fifthLima[i].progreso.porcentajeCompletado;
+      let fifthLimaProgramDuration = fifthLima[i].progreso.duracionPrograma;
+      btnLimaFifth.addEventListener('click', () => {
+        limaFifthInfo.style.display = 'block';
+        btnLimaFourth.style.display = 'none';
+        btnLimaThird.style.display = 'none';
+        fifthLimaStudents += `<p>${fifthLimaNames}</p>`;
+        fifthLimaPercentages += `<p>${fifthLimaCompletedPercent}%</p>`;
+        fifthLimaDuration += `<p>${fifthLimaProgramDuration}</p>`;
+        limaFifthNames.innerHTML = fifthLimaStudents;
+        fifthLimaCompletedPercentage.innerHTML = fifthLimaPercentages;
+        limaDurationPercentageFifth.innerHTML = fifthLimaDuration;
+      });
+    }
+  });
+  btnMexico.addEventListener('click', () => {
+    btnLima.style.display = 'none';
+    btnStgo.style.display = 'none';
+    btnMexico.style.display = 'block';
+    mexico.style.display = 'block';
+    let thirdMexico = dataValues[0].generacion.tercera.estudiantes;
+    let thirdMexicoStudents = '';
+    let thirdMexicoPercentages = '';
+    let thirdMexicoDuration = '';
+    for (let i = 0; i < thirdMexico.length; i++) {
+      let thirdMexicoNames = thirdMexico[i].nombre;
+      let thirdMexicoCompletedPercent = thirdMexico[i].progreso.porcentajeCompletado;
+      let thirdMexicoProgramDuration = thirdMexico[i].progreso.duracionPrograma;
+      btnMexicoThird.addEventListener('click', () => {
+        mexicoThirdInfo.style.display = 'block';
+        btnMexicoFourth.style.display = 'none';
+        btnMexicoFifth.style.display = 'none';
+        thirdMexicoStudents += `<p>${thirdMexicoNames}</p>`;
+        thirdMexicoPercentages += `<p>${thirdMexicoCompletedPercent}%</p>`;
+        thirdMexicoDuration += `<p>${thirdMexicoProgramDuration}</p>`;
+        mexicoThirdNames.innerHTML = thirdMexicoStudents;
+        thirdMexicoCompletedPercentage.innerHTML = thirdMexicoPercentages;
+        mexicoDurationPercentageThird.innerHTML = thirdMexicoDuration;
+      });
+    }
+    let fourthMexico = dataValues[0].generacion.cuarta.estudiantes;
+    let fourthMexicoStudents = '';
+    let fourthMexicoPercentages = '';
+    let fourthMexicoDuration = '';
+    for (let i = 0; i < fourthMexico.length; i++) {
+      let fourthMexicoNames = fourthMexico[i].nombre;
+      let fourthMexicoCompletedPercent = fourthMexico[i].progreso.porcentajeCompletado;
+      let fourthMexicoProgramDuration = fourthMexico[i].progreso.duracionPrograma;
+      btnMexicoFourth.addEventListener('click', () => {
+        mexicoFourthInfo.style.display = 'block';
+        btnMexicoThird.style.display = 'none';
+        btnMexicoFifth.style.display = 'none';
+        fourthMexicoStudents += `<p>${fourthMexicoNames}</p>`;
+        fourthMexicoPercentages += `<p>${fourthMexicoCompletedPercent}%</p>`;
+        fourthMexicoDuration += `<p>${fourthMexicoProgramDuration}</p>`;
+        mexicoFourthNames.innerHTML = fourthMexicoStudents;
+        fourthMexicoCompletedPercentage.innerHTML = fourthMexicoPercentages;
+        mexicoDurationPercentageFourth.innerHTML = fourthMexicoDuration;
+      });
+    }
+    let fifthMexico = dataValues[0].generacion.quinta.estudiantes;
+    let fifthMexicoStudents = '';
+    let fifthMexicoPercentages = '';
+    let fifthMexicoDuration = '';
+    for (let i = 0; i < fifthMexico.length; i++) {
+      let fifthMexicoNames = fifthMexico[i].nombre;
+      let fifthMexicoCompletedPercent = fifthMexico[i].progreso.porcentajeCompletado;
+      let fifthMexicoProgramDuration = fifthMexico[i].progreso.duracionPrograma;
+      btnMexicoFifth.addEventListener('click', () => {
+        mexicoFifthInfo.style.display = 'block';
+        btnMexicoFourth.style.display = 'none';
+        btnMexicoThird.style.display = 'none';
+        fifthMexicoStudents += `<p>${fifthMexicoNames}</p>`;
+        fifthMexicoPercentages += `<p>${fifthMexicoCompletedPercent}%</p>`;
+        fifthMexicoDuration += `<p>${fifthMexicoProgramDuration}</p>`;
+        mexicoFifthNames.innerHTML = fifthMexicoStudents;
+        fifthMexicoCompletedPercentage.innerHTML = fifthMexicoPercentages;
+        mexicoDurationPercentageFifth.innerHTML = fifthMexicoDuration;
+      });
+    }
+  });
+};
