@@ -10,28 +10,49 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data Dashboard</title>
 </head>
+
 <body>
-        <header>
-                <img src="imagenes/laboratoria logo.png" id="logo" alt="Logo Laboratoria" ​align="right">
-                <img src="imagenes/triangulo.png" id="triangulo" alt="Triangulo" ​align=""><br>
-                <h2>Data Dashboard</h2><br>
-            </header>
-            
-            <section id="login">
-                    <p>Ingrese su usuario y contraseña</p><br>
-                    <div class="container-fluid">
-                        <form>
-                            <input class="col-md-3 offset-" type="text" name="userid" placeholder="Usuario">
-                            <input class="col-md-3 offset-1" type="password" name="psw" placeholder="Contraseña"><br>
-                            <button type="button" id="btnLogin">Entrar</button>
-                        </form>
-                    </div>
-                </section>
-  
+    <header>
+        <img src="imagenes/laboratoria logo.png" id="logo" alt="Logo Laboratoria" ​align="right">
+        <img src="imagenes/triangulo.png" id="triangulo" alt="Triangulo" ​align=""><br>
+        <h2>Data Dashboard</h2><br>
+    </header>
+
+    <section id="login">
+        <p>Ingrese su usuario y contraseña</p><br>
+        <div class="container-fluid">
+            <form>
+                <input class="col-md-3 offset-" type="text" name="userid" placeholder="Usuario">
+                <input class="col-md-3 offset-1" type="password" name="psw" placeholder="Contraseña"><br>
+                <button type="button" id="btnLogin">Entrar</button>
+            </form>
+        </div>
+    </section>
+
     <section id="btnsCampus">
-    <button type="button" id="btnLima">Lima</button>
-    <button type="button" id="btnMexico">México</button>
-    <button type="button" id="btnStgo">Santiago</button>
+        <button type="button" id="btnLima">Lima</button>
+        <article id="lima">
+            <button type="button" id="limaThird">Tercera</button>
+            <article id="limaThirdInfo">
+                <div id="limaNamesThird"></div>
+                <div id="limaCompletedPercentageThird"></div>
+                <div id="limaDurationPercentageThird"></div>
+            </article>
+            <button type="button" id="limaFourth">Cuarta</button>
+            <article id=limaFourthInfo>
+                <div id="limaNamesFourth"></div>
+                <div id="limaCompletedPercentageFourth"></div>
+                <div id="limaDurationPercentageFourth"></div>
+            </article>
+            <button type="button" id="limaFifth">Quinta</button>
+            <article id=limaFifthInfo>
+                <div id="limaNamesFifth"></div>
+                <div id="limaCompletedPercentageFifth"></div>
+                <div id="limaDurationPercentageFifth"></div>
+            </article>
+        </article>
+        <button type="button" id="btnMexico">México</button>
+        <button type="button" id="btnStgo">Santiago</button>
     </section>
     <script src="newdata.js"></script>
     <script src="newmain.js"></script>
