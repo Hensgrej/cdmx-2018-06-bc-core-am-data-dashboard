@@ -1,1456 +1,207 @@
-// Accesing HTML elements
+const laboratoria = 'https://api.myjson.com/bins/13lpdy';
+const login = document.getElementById('login');
+const btnLogin = document.getElementById('btnLogin');
+const btnsCampus = document.getElementById('btnsCampus');
+const nameParagraph = document.getElementById('name');
+// Lima HTML elements
 const btnLima = document.getElementById('btnLima');
+const btnLimaThird = document.getElementById('btnLimaThird');
+const btnLimaFourth = document.getElementById('btnLimaFourth');
+const btnLimaFifth = document.getElementById('btnLimaFifth');
+const limaThirdInfo = document.getElementById('limaThirdInfo');
+const limaFourthInfo = document.getElementById('limaFourthInfo');
+const limaFifthInfo = document.getElementById('limaFifthInfo');
+const articleLima = document.getElementById('lima');
+const limaThirdNames = document.getElementById('limaNamesThird');
+const limaFourthNames = document.getElementById('limaNamesFourth');
+const limaFifthNames = document.getElementById('limaNamesFifth');
+const fourthLimaCompletedPercentage = document.getElementById('limaCompletedPercentageFourth');
+const limaDurationPercentageFourth = document.getElementById('limaDurationPercentageFourth');
+const thirdLimaCompletedPercentage = document.getElementById('limaCompletedPercentageThird');
+const limaDurationPercentageThird = document.getElementById('limaDurationPercentageThird');
+const fifthLimaCompletedPercentage = document.getElementById('limaCompletedPercentageFifth');
+const limaDurationPercentageFifth = document.getElementById('limaDurationPercentageFifth');
+// Mexico HTML elements
 const btnMexico = document.getElementById('btnMexico');
-const btnStgo = document.getElementById('btnStgo');
-const btnLimaThird = document.getElementById('btnThirdLima');
-const btnLimaFourth = document.getElementById('btnFourthLima');
-const btnLimaFifth = document.getElementById('btnFifthLima');
-const resultDiv = document.getElementById('result');
-const third = document.getElementById('tercera');
-const fourth = document.getElementById('cuarta');
-const fifth = document.getElementById('quinta');
-const thirdSubject = document.getElementById('subtemasTercera');
-const thirdSubtopic = document.getElementById('subtopicsTercera');
-const fourthSubject = document.getElementById('subtemasCuarta');
-const fourthSubtopic = document.getElementById('subtopicsCuarta');
-const fifthSubject = document.getElementById('subtemasQuinta');
-const fifthSubtopic = document.getElementById('subtopicsQuinta');
+const btnMexicoThird = document.getElementById('btnMexicoThird');
+const btnMexicoFourth = document.getElementById('btnMexicoFourth');
+const btnMexicoFifth = document.getElementById('btnMexicoFifth');
+const mexicoThirdInfo = document.getElementById('mexicoThirdInfo');
+const mexicoFourthInfo = document.getElementById('mexicoFourthInfo');
+const mexicoFifthInfo = document.getElementById('mexicoFifthInfo');
+const articleMexico = document.getElementById('mexico');
+const mexicoThirdNames = document.getElementById('mexicoNamesThird');
+const mexicoFourthNames = document.getElementById('mexicoNamesFourth');
+const mexicoFifthNames = document.getElementById('mexicoNamesFifth');
+const fourthMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageFourth');
+const mexicoDurationPercentageFourth = document.getElementById('mexicoDurationPercentageFourth');
+const thirdMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageThird');
+const mexicoDurationPercentageThird = document.getElementById('mexicoDurationPercentageThird');
+const fifthMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageFifth');
+const mexicoDurationPercentageFifth = document.getElementById('mexicoDurationPercentageFifth');
 
-// All Students Data
-laboratoriaData = (data) => {
-  // Each button prints all three generations from all campuses with each students name, mail and progress.
-  btnLima.addEventListener('click', () => {  
-    let thirdGeneration = '';
-    let fourthGeneration = '';
-    let fifthGeneration = '';
-    const infoLima = Object.values(data)[0];
-    btnLimaThird.addEventListener('click', () => {
-      // Lima's Third Generation
-      const limaThirdStudents = Object.values(infoLima.generacion.tercera.estudiantes);
-      // Looping Array
-      for (let i = 0; i < limaThirdStudents.length; i++) {
-        thirdGeneration += `<div class="students">
-                    <div class="info">
-                    <table style="width:50%">
-                      <tr class="info-tabla">
-                      <td>${limaThirdStudents[i].nombre}</td>
-                    <td>${limaThirdStudents[i].correo}</td>
-                  <td>${limaThirdStudents[i].progreso.duracionPrograma}</td>
-               <td>${limaThirdStudents[i].progreso.porcentajeCompletado}%</td>
-               </tr>
-               </table>
-               </div>
-               </div>
-            </div>`;
-      } 
-      // Third Generation Printed Stats
-      let thirdGenerationSubjects = '';
-      let subjects = [];
-      let thirdGenerationSubtopics = '';
+window.dashboardData = {
+  dataLaboratoria: (laboratoria) => {
+    fetch(laboratoria).then((data) => {
+      return data.json();
+    })
+      .then((data) => {
+        let dataValues = (Object.values(data));
+        dashboardCompute.computeStudentsStats(dataValues);
+        dashboardPrint.computeGenerationStats(dataValues);
+        return dataValues;
+      })
+      .then((dataValues) => {
+        btnLogin.addEventListener('click', () => {
+          printStudents(dataValues);
+          login.style.display = 'none';
+          btnsCampus.style.display = 'block';
+        });
+      }).catch((err) => {
+        console.log('Error en laboratoriaData');
+      });
+  }
+};
+// Calling API
+dashboardData.dataLaboratoria(laboratoria);
 
-      // Showing Subject Stats for each subject for each student in Lima
-      for (let i = 0; i < limaThirdStudents.length; i++) {
-        let limaSubjects = limaThirdStudents[i].progreso.temas;
-        subjects.push(limaSubjects);     
-        console.log(subjects);
-        thirdGenerationSubjects += ` <div class = "subjects01">
-                                        <h2>01 Introducción a Programación</h2>
-                                        <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado} %</p>
-                                        <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects02">
-                                        <h2>02 Variables y tipos de datos</h2>
-                                        <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado} %</p>
-                                        <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects03">
-                                        <h2>03 UX</h2>
-                                        <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado} %</p>
-                                        <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                        </div>`;
-        thirdGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                        <div class = "subtopics01">
-                                        <h3>00 Bienvenida Orientacion</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 - Desarrollo Profesional</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>03 Por qué aprender a programar</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Tu primer sitio</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Quiz</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-variables">
-                                        <div class = "subtopics01">
-                                        <h3>00 Tipos de datos y operadores</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 Variables</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 Auto Aprendizaje MDN</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Comments</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Ejercicios guiados</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics06">
-                                        <h3>05 Quiz</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics07">
-                                        <h3>06 Ejercicios</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-ux">
-                                        <div class = "subtopics01">
-                                        <h3>00 Equipos de desarrollo</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 UX diseño</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 UX vs UI</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Quiz</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        `;
-      }
-      thirdSubject.innerHTML = thirdGenerationSubjects;
-      thirdSubtopic.innerHTML = thirdGenerationSubtopics;
-    });
-    btnLimaFourth.addEventListener('click', () => {
-      // Lima's Fourth Generation
-      const limaFourthStudents = Object.values(infoLima.generacion.cuarta.estudiantes);
-      // Looping Array
-      for (let i = 0; i < limaFourthStudents.length; i++) {
-        fourthGeneration += `<div class="students">
-                    <div class="info">
-                    <table style="width:50%">
-                    <tr class="info-tabla">
-                    <td>${limaFourthStudents[i].nombre}</td>
-                  <td>${limaFourthStudents[i].correo}</td>
-                <td>${limaFourthStudents[i].progreso.duracionPrograma}</td>
-             <td>${limaFourthStudents[i].progreso.porcentajeCompletado}%</td>
-             </tr>
-             </table>
-             </div>
-            </div>`;
-      }
-      // Fourth Generation Printed Stats
-      let fourthGenerationSubjects = '';
-      let subjects1 = {};
-      let fourthGenerationSubtopics = '';
+// Hiding non-necessary HTML elements
+btnsCampus.style.display = 'none';
+lima.style.display = 'none';
+mexico.style.display = 'none';
+nameParagraph.style.display = 'none';
 
-      // Showing Subject Stats for each subject for each student
-      for (let i = 0; i < limaFourthStudents.length; i++) {
-        let limaSubjects = limaFourthStudents[i].progreso.temas;
-        limaSubjects += subjects1;     
-        fourthGenerationSubjects += ` <div class = "subjects01">
-                                        <h2>01 Introducción a Programación</h2>
-                                        <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects02">
-                                        <h2>02 Variables y tipos de datos</h2>
-                                        <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects03">
-                                        <h2>03 UX</h2>
-                                        <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                        </div>`;
-        fourthGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                        <div class = "subtopics01">
-                                        <h3>00 Bienvenida Orientacion</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 - Desarrollo Profesional</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>03 Por qué aprender a programar</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Tu primer sitio</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Quiz</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-variables">
-                                        <div class = "subtopics01">
-                                        <h3>00 Tipos de datos y operadores</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 Variables</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 Auto Aprendizaje MDN</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Comments</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Ejercicios guiados</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics06">
-                                        <h3>05 Quiz</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics07">
-                                        <h3>06 Ejercicios</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-ux">
-                                        <div class = "subtopics01">
-                                        <h3>00 Equipos de desarrollo</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 UX diseño</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 UX vs UI</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Quiz</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        `;
-      }
-      fourthSubject.innerHTML = fourthGenerationSubjects;
-      fourthSubtopic.innerHTML = fourthGenerationSubtopics;
-    });
-    btnLimaFifth.addEventListener('click', () => { 
-      // Lima's Fifth generation
-      const limaFifthStudents = Object.values(infoLima.generacion.quinta.estudiantes);
-      // Looping Array
-      for (let i = 0; i < limaFifthStudents.length; i++) {
-        fifthGeneration += `<div class="students">
-                    <div class="info">
-                    <table style="width:50%">
-                    <tr class="info-tabla">
-                    <td>${limaFifthStudents[i].nombre}</td>
-                  <td>${limaFifthStudents[i].correo}</td>
-                <td>${limaFifthStudents[i].progreso.duracionPrograma}</td>
-             <td>${limaFifthStudents[i].progreso.porcentajeCompletado}%</td>
-             </tr>
-             </table>
-             </div>
-            </div>`;
-      }
-      // Fifth Generation Printed Stats
-      let fifthGenerationSubjects = '';
-      let subjects2 = [];
-      let fifthGenerationSubtopics = '';
-
-      // Showing Subject Stats for each subject for each student
-      for (let i = 0; i < limaFifthStudents.length; i++) {
-        let limaSubjects = limaFifthStudents[i].progreso.temas;
-        subjects2 = limaSubjects;     
-        fifthGenerationSubjects += ` <div class = "subjects01">
-                                        <h2>01 Introducción a Programación</h2>
-                                        <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects02">
-                                        <h2>02 Variables y tipos de datos</h2>
-                                        <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects03">
-                                        <h2>03 UX</h2>
-                                        <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                        </div>`;
-        fifthGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                        <div class = "subtopics01">
-                                        <h3>00 Bienvenida Orientacion</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 - Desarrollo Profesional</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>03 Por qué aprender a programar</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Tu primer sitio</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Quiz</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-variables">
-                                        <div class = "subtopics01">
-                                        <h3>00 Tipos de datos y operadores</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 Variables</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 Auto Aprendizaje MDN</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Comments</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Ejercicios guiados</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics06">
-                                        <h3>05 Quiz</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics07">
-                                        <h3>06 Ejercicios</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-ux">
-                                        <div class = "subtopics01">
-                                        <h3>00 Equipos de desarrollo</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 UX diseño</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 UX vs UI</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Quiz</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        `;
-      }
-      fifthSubject.innerHTML = fourthGenerationSubjects;
-      fifthSubtopic.innerHTML = fourthGenerationSubtopics;  
-    });
-    third.innerHTML = thirdGeneration;
-    fourth.innerHTML = fourthGeneration;
-    fifth.innerHTML = fifthGeneration;    
+// Function with navigation path that prints students names, completed percentages and duration of program
+const printStudents = (dataValues) => {
+  btnLima.addEventListener('click', () => {
+    btnMexico.style.display = 'none';
+    btnStgo.style.display = 'none';
+    lima.style.display = 'block';
+    let thirdLima = dataValues[0].generacion.tercera.estudiantes;
+    let thirdLimaStudents = '';
+    let thirdLimaPercentages = '';
+    let thirdLimaDuration = '';
+    for (let i = 0; i < thirdLima.length; i++) {
+      let thirdLimaNames = thirdLima[i].nombre;
+      let thirdLimaCompletedPercent = thirdLima[i].progreso.porcentajeCompletado;
+      let thirdLimaProgramDuration = thirdLima[i].progreso.duracionPrograma;
+      btnLimaThird.addEventListener('click', () => {
+        limaThirdInfo.style.display = 'block';
+        btnLimaFourth.style.display = 'none';
+        btnLimaFifth.style.display = 'none';
+        thirdLimaStudents += `<buttton type="buttton" class="no-style">${thirdLimaNames}</button>`;
+        thirdLimaPercentages += `<buttton type="buttton" class="no-style">${thirdLimaCompletedPercent}%</button>`;
+        thirdLimaDuration += `<buttton type="buttton" class="no-style">${thirdLimaProgramDuration}</button>`;
+        limaThirdNames.innerHTML = thirdLimaStudents;
+        thirdLimaCompletedPercentage.innerHTML = thirdLimaPercentages;
+        limaDurationPercentageThird.innerHTML = thirdLimaDuration;
+      });
+    }
+    let fourthLima = dataValues[0].generacion.cuarta.estudiantes;
+    let fourthLimaStudents = '';
+    let fourthLimaPercentages = '';
+    let fourthLimaDuration = '';
+    for (let i = 0; i < fourthLima.length; i++) {
+      let fourthLimaNames = fourthLima[i].nombre;
+      let fourthLimaCompletedPercent = fourthLima[i].progreso.porcentajeCompletado;
+      let fourthLimaProgramDuration = fourthLima[i].progreso.duracionPrograma;
+      btnLimaFourth.addEventListener('click', () => {
+        limaFourthInfo.style.display = 'block';
+        btnLimaThird.style.display = 'none';
+        btnLimaFifth.style.display = 'none';
+        fourthLimaStudents += `<buttton type="buttton" class="no-style">${fourthLimaNames}</button>`;
+        fourthLimaPercentages += `<p>${fourthLimaCompletedPercent}%</p>`;
+        fourthLimaDuration += `<p>${fourthLimaProgramDuration}</p>`;
+        limaFourthNames.innerHTML = fourthLimaStudents;
+        fourthLimaCompletedPercentage.innerHTML = fourthLimaPercentages;
+        limaDurationPercentageFourth.innerHTML = fourthLimaDuration;
+      });
+    }
+    let fifthLima = dataValues[0].generacion.quinta.estudiantes;
+    let fifthLimaStudents = '';
+    let fifthLimaPercentages = '';
+    let fifthLimaDuration = '';
+    for (let i = 0; i < fifthLima.length; i++) {
+      let fifthLimaNames = fifthLima[i].nombre;
+      let fifthLimaCompletedPercent = fifthLima[i].progreso.porcentajeCompletado;
+      let fifthLimaProgramDuration = fifthLima[i].progreso.duracionPrograma;
+      btnLimaFifth.addEventListener('click', () => {
+        limaFifthInfo.style.display = 'block';
+        btnLimaFourth.style.display = 'none';
+        btnLimaThird.style.display = 'none';
+        fifthLimaStudents += `<p>${fifthLimaNames}</p>`;
+        fifthLimaPercentages += `<p>${fifthLimaCompletedPercent}%</p>`;
+        fifthLimaDuration += `<p>${fifthLimaProgramDuration}</p>`;
+        limaFifthNames.innerHTML = fifthLimaStudents;
+        fifthLimaCompletedPercentage.innerHTML = fifthLimaPercentages;
+        limaDurationPercentageFifth.innerHTML = fifthLimaDuration;
+      });
+    }
   });
   btnMexico.addEventListener('click', () => {
-    let thirdGeneration = '';
-    let fourthGeneration = '';
-    let fifthGeneration = '';
-    const infoMexico = Object.values(data)[1];
-    // Mexico's Third Generation
-    const mexicoThirdStudents = Object.values(infoMexico.generacion.tercera.estudiantes);
-    // Looping Array
-    for (let i = 0; i < mexicoThirdStudents.length; i++) {
-      thirdGeneration += `<div class="students">
-                    <div class="info">
-                      <p>Nombre: ${mexicoThirdStudents[i].nombre}</p>
-                    <p>Correo: ${mexicoThirdStudents[i].correo}</p>
-                  <p>Duracion Temas: ${mexicoThirdStudents[i].progreso.duracionPrograma}</p>
-               <p>Porcentaje de Completado: ${mexicoThirdStudents[i].progreso.porcentajeCompletado}%</p>
-             </div>
-            </div>`;
+    btnLima.style.display = 'none';
+    btnStgo.style.display = 'none';
+    btnMexico.style.display = 'block';
+    mexico.style.display = 'block';
+    let thirdMexico = dataValues[0].generacion.tercera.estudiantes;
+    let thirdMexicoStudents = '';
+    let thirdMexicoPercentages = '';
+    let thirdMexicoDuration = '';
+    for (let i = 0; i < thirdMexico.length; i++) {
+      let thirdMexicoNames = thirdMexico[i].nombre;
+      let thirdMexicoCompletedPercent = thirdMexico[i].progreso.porcentajeCompletado;
+      let thirdMexicoProgramDuration = thirdMexico[i].progreso.duracionPrograma;
+      btnMexicoThird.addEventListener('click', () => {
+        mexicoThirdInfo.style.display = 'block';
+        btnMexicoFourth.style.display = 'none';
+        btnMexicoFifth.style.display = 'none';
+        thirdMexicoStudents += `<p>${thirdMexicoNames}</p>`;
+        thirdMexicoPercentages += `<p>${thirdMexicoCompletedPercent}%</p>`;
+        thirdMexicoDuration += `<p>${thirdMexicoProgramDuration}</p>`;
+        mexicoThirdNames.innerHTML = thirdMexicoStudents;
+        thirdMexicoCompletedPercentage.innerHTML = thirdMexicoPercentages;
+        mexicoDurationPercentageThird.innerHTML = thirdMexicoDuration;
+      });
     }
-    // Mexico's Fourth generation
-    const mexicoFourthStudents = Object.values(infoMexico.generacion.cuarta.estudiantes);
-    // Looping Array
-    for (let i = 0; i < mexicoFourthStudents.length; i++) {
-      fourthGeneration += `<div class="students">
-                    <div class="info">
-                      <p>Nombre: ${mexicoFourthStudents[i].nombre}</p>
-                    <p>Correo: ${mexicoFourthStudents[i].correo}</p>
-                  <p>Duracion Temas: ${mexicoFourthStudents[i].progreso.duracionPrograma}</p>
-               <p>Porcentaje de Completado: ${mexicoFourthStudents[i].progreso.porcentajeCompletado}%</p>
-             </div>
-            </div>`;
+    let fourthMexico = dataValues[0].generacion.cuarta.estudiantes;
+    let fourthMexicoStudents = '';
+    let fourthMexicoPercentages = '';
+    let fourthMexicoDuration = '';
+    for (let i = 0; i < fourthMexico.length; i++) {
+      let fourthMexicoNames = fourthMexico[i].nombre;
+      let fourthMexicoCompletedPercent = fourthMexico[i].progreso.porcentajeCompletado;
+      let fourthMexicoProgramDuration = fourthMexico[i].progreso.duracionPrograma;
+      btnMexicoFourth.addEventListener('click', () => {
+        mexicoFourthInfo.style.display = 'block';
+        btnMexicoThird.style.display = 'none';
+        btnMexicoFifth.style.display = 'none';
+        fourthMexicoStudents += `<p>${fourthMexicoNames}</p>`;
+        fourthMexicoPercentages += `<p>${fourthMexicoCompletedPercent}%</p>`;
+        fourthMexicoDuration += `<p>${fourthMexicoProgramDuration}</p>`;
+        mexicoFourthNames.innerHTML = fourthMexicoStudents;
+        fourthMexicoCompletedPercentage.innerHTML = fourthMexicoPercentages;
+        mexicoDurationPercentageFourth.innerHTML = fourthMexicoDuration;
+      });
     }
-    // Mexico's Fifth generation
-    const mexicoFifthStudents = Object.values(infoMexico.generacion.quinta.estudiantes);
-    // Looping Array
-    for (let i = 0; i < mexicoFifthStudents.length; i++) {
-      fifthGeneration += `<div class="students">
-                    <div class="info">
-                      <p>Nombre: ${mexicoFifthStudents[i].nombre}</p>
-                    <p>Correo: ${mexicoFifthStudents[i].correo}</p>
-                  <p>Duracion Temas: ${mexicoFifthStudents[i].progreso.duracionPrograma}</p>
-               <p>Porcentaje de Completado: ${mexicoFifthStudents[i].progreso.porcentajeCompletado}%</p>
-             </div>
-            </div>`;
+    let fifthMexico = dataValues[0].generacion.quinta.estudiantes;
+    let fifthMexicoStudents = '';
+    let fifthMexicoPercentages = '';
+    let fifthMexicoDuration = '';
+    for (let i = 0; i < fifthMexico.length; i++) {
+      let fifthMexicoNames = fifthMexico[i].nombre;
+      let fifthMexicoCompletedPercent = fifthMexico[i].progreso.porcentajeCompletado;
+      let fifthMexicoProgramDuration = fifthMexico[i].progreso.duracionPrograma;
+      btnMexicoFifth.addEventListener('click', () => {
+        mexicoFifthInfo.style.display = 'block';
+        btnMexicoFourth.style.display = 'none';
+        btnMexicoThird.style.display = 'none';
+        fifthMexicoStudents += `<p>${fifthMexicoNames}</p>`;
+        fifthMexicoPercentages += `<p>${fifthMexicoCompletedPercent}%</p>`;
+        fifthMexicoDuration += `<p>${fifthMexicoProgramDuration}</p>`;
+        mexicoFifthNames.innerHTML = fifthMexicoStudents;
+        fifthMexicoCompletedPercentage.innerHTML = fifthMexicoPercentages;
+        mexicoDurationPercentageFifth.innerHTML = fifthMexicoDuration;
+      });
     }
-        
-    third.innerHTML = thirdGeneration;
-    fourth.innerHTML = fourthGeneration;
-    fifth.innerHTML = fifthGeneration;
-
-        
-    // Third Generation Printed Stats
-    let thirdGenerationSubjects = '';
-    let subjects = [];
-    let thirdGenerationSubtopics = '';
-
-    // Showing Subject Stats for each subject for each student in Mexico
-    for (let i = 0; i < mexicoThirdStudents.length; i++) {
-      let mexicoSubjects = mexicoThirdStudents[i].progreso.temas;
-      subjects = mexicoSubjects;     
-      thirdGenerationSubjects += ` <div class = "subjects01">
-                                        <h2>01 Introducción a Programación</h2>
-                                        <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects02">
-                                        <h2>02 Variables y tipos de datos</h2>
-                                        <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects03">
-                                        <h2>03 UX</h2>
-                                        <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                        </div>`;
-      thirdGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                        <div class = "subtopics01">
-                                        <h3>00 Bienvenida Orientacion</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 - Desarrollo Profesional</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>03 Por qué aprender a programar</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Tu primer sitio</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Quiz</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-variables">
-                                        <div class = "subtopics01">
-                                        <h3>00 Tipos de datos y operadores</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 Variables</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 Auto Aprendizaje MDN</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Comments</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Ejercicios guiados</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics06">
-                                        <h3>05 Quiz</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics07">
-                                        <h3>06 Ejercicios</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-ux">
-                                        <div class = "subtopics01">
-                                        <h3>00 Equipos de desarrollo</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 UX diseño</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 UX vs UI</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Quiz</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        `;
-    }
-    thirdSubject.innerHTML = thirdGenerationSubjects;
-    thirdSubtopic.innerHTML = thirdGenerationSubtopics;
-
-    // Fourth Generation Printed Stats
-    let fourthGenerationSubjects = '';
-    let subjects1 = {
-      name: null,
-      campus: null,
-      stats: {
-                
-      }
-    };
-    let fourthGenerationSubtopics = '';
-
-    // Showing Subject Stats for each subject for each student
-    for (let i = 0; i < mexicoFourthStudents.length; i++) {
-      let mexicoSubjects = mexicoFourthStudents[i].progreso.temas;
-      subjects1 = mexicoSubjects;     
-      fourthGenerationSubjects += ` <div class = "subjects01">
-                                            <h2>01 Introducción a Programación</h2>
-                                            <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                            <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                            <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                            <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                            <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                            </div>
-                                            <div class = "subjects02">
-                                            <h2>02 Variables y tipos de datos</h2>
-                                            <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                            <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                            <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                            <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                            <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                            </div>
-                                            <div class = "subjects03">
-                                            <h2>03 UX</h2>
-                                            <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                            <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                            <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                            <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                            <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                            </div>`;
-      fourthGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                            <div class = "subtopics01">
-                                            <h3>00 Bienvenida Orientacion</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics02">
-                                            <h3>01 - Desarrollo Profesional</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics03">
-                                            <h3>03 Por qué aprender a programar</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics04">
-                                            <h3>03 Tu primer sitio</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics05">
-                                            <h3>04 Quiz</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                            </div>
-                                            </div>
-                                            <div class = "subtopics-variables">
-                                            <div class = "subtopics01">
-                                            <h3>00 Tipos de datos y operadores</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics02">
-                                            <h3>01 Variables</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics03">
-                                            <h3>02 Auto Aprendizaje MDN</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics04">
-                                            <h3>03 Comments</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics05">
-                                            <h3>04 Ejercicios guiados</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics06">
-                                            <h3>05 Quiz</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics07">
-                                            <h3>06 Ejercicios</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                            </div>
-                                            </div>
-                                            <div class = "subtopics-ux">
-                                            <div class = "subtopics01">
-                                            <h3>00 Equipos de desarrollo</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics02">
-                                            <h3>01 UX diseño</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics03">
-                                            <h3>02 UX vs UI</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics04">
-                                            <h3>03 Quiz</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                            </div>
-                                            </div>
-                                            `;
-    }
-    fourthSubject.innerHTML = fourthGenerationSubjects;
-    fourthSubtopic.innerHTML = fourthGenerationSubtopics;
-
-    // Fifth Generation Printed Stats
-    let fifthGenerationSubjects = '';
-    let subjects2 = [];
-    let fifthGenerationSubtopics = '';
-    
-    // Showing Subject Stats for each subject for each student in Mexico
-    for (let i = 0; i < mexicoFifthStudents.length; i++) {
-      let mexicoSubjects = mexicoFifthStudents[i].progreso.temas;
-      subjects2 = mexicoSubjects;     
-      fifthGenerationSubjects += ` <div class = "subjects01">
-                                                <h2>01 Introducción a Programación</h2>
-                                                <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                                <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                                <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                                <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                                <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                                </div>
-                                                <div class = "subjects02">
-                                                <h2>02 Variables y tipos de datos</h2>
-                                                <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                                <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                                <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                                <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                                <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                                </div>
-                                                <div class = "subjects03">
-                                                <h2>03 UX</h2>
-                                                <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                                <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                                <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                                <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                                <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                                </div>`;
-      fifthGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                                <div class = "subtopics01">
-                                                <h3>00 Bienvenida Orientacion</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics02">
-                                                <h3>01 - Desarrollo Profesional</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics03">
-                                                <h3>03 Por qué aprender a programar</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics04">
-                                                <h3>03 Tu primer sitio</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics05">
-                                                <h3>04 Quiz</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                                </div>
-                                                </div>
-                                                <div class = "subtopics-variables">
-                                                <div class = "subtopics01">
-                                                <h3>00 Tipos de datos y operadores</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics02">
-                                                <h3>01 Variables</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics03">
-                                                <h3>02 Auto Aprendizaje MDN</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics04">
-                                                <h3>03 Comments</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics05">
-                                                <h3>04 Ejercicios guiados</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics06">
-                                                <h3>05 Quiz</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics07">
-                                                <h3>06 Ejercicios</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                                </div>
-                                                </div>
-                                                <div class = "subtopics-ux">
-                                                <div class = "subtopics01">
-                                                <h3>00 Equipos de desarrollo</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics02">
-                                                <h3>01 UX diseño</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics03">
-                                                <h3>02 UX vs UI</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics04">
-                                                <h3>03 Quiz</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                                </div>
-                                                </div>
-                                                `;
-    }
-    fifthSubject.innerHTML = fourthGenerationSubjects;
-    fifthSubtopic.innerHTML = fourthGenerationSubtopics;
-  });
-  btnStgo.addEventListener('click', () => {
-    let thirdGeneration = '';
-    let fourthGeneration = '';
-    let fifthGeneration = '';
-    const infoStgo = Object.values(data)[2];
-    // Santiago's Third Generation
-    const stgoThirdStudents = Object.values(infoStgo.generacion.tercera.estudiantes);
-    // Looping Array
-    for (let i = 0; i < stgoThirdStudents.length; i++) {
-      thirdGeneration += `<div class="students">
-                    <div class="info">
-                      <p>Nombre: ${stgoThirdStudents[i].nombre}</p>
-                    <p>Correo: ${stgoThirdStudents[i].correo}</p>
-                  <p>Duracion Temas: ${stgoThirdStudents[i].progreso.duracionPrograma}</p>
-               <p>Porcentaje de Completado: ${stgoThirdStudents[i].progreso.porcentajeCompletado}%</p>
-             </div>
-            </div>`;
-    }
-    // Santiago's Fourth Generation
-    const stgoFourthStudents = Object.values(infoStgo.generacion.cuarta.estudiantes);
-    // Looping Array
-    for (let i = 0; i < stgoFourthStudents.length; i++) {
-      fourthGeneration += `<div class="students">
-                    <div class="info">
-                      <p>Nombre: ${stgoFourthStudents[i].nombre}</p>
-                    <p>Correo: ${stgoFourthStudents[i].correo}</p>
-                  <p>Duracion Temas: ${stgoFourthStudents[i].progreso.duracionPrograma}</p>
-               <p>Porcentaje de Completado: ${stgoFourthStudents[i].progreso.porcentajeCompletado}%</p>
-             </div>
-            </div>`;
-    }
-    // Santiago's Fifth Generation
-    const stgoFifthStudents = Object.values(infoStgo.generacion.quinta.estudiantes);
-    // Looping Array
-    for (let i = 0; i < stgoFifthStudents.length; i++) {
-      fifthGeneration += `<div class="students">
-                    <div class="info">
-                      <p>Nombre: ${stgoFifthStudents[i].nombre}</p>
-                    <p>Correo: ${stgoFifthStudents[i].correo}</p>
-                  <p>Duracion Temas: ${stgoFifthStudents[i].progreso.duracionPrograma}</p>
-               <p>Porcentaje de Completado: ${stgoFifthStudents[i].progreso.porcentajeCompletado}%</p>
-             </div>
-            </div>`;
-    }
-    third.innerHTML = thirdGeneration;
-    fourth.innerHTML = fourthGeneration;
-    fifth.innerHTML = fifthGeneration;
-
-    // Third Generation Printed Stats
-    let thirdGenerationSubjects = '';
-    let subjects = [];
-    let thirdGenerationSubtopics = '';
-
-    // Showing Subject Stats for each subject for each student in Santiago
-    for (let i = 0; i < stgoThirdStudents.length; i++) {
-      let stgoSubjects = stgoThirdStudents[i].progreso.temas;
-      subjects = stgoSubjects;     
-      thirdGenerationSubjects += ` <div class = "subjects01">
-                                        <h2>01 Introducción a Programación</h2>
-                                        <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects02">
-                                        <h2>02 Variables y tipos de datos</h2>
-                                        <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                        </div>
-                                        <div class = "subjects03">
-                                        <h2>03 UX</h2>
-                                        <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                        <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                        <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                        <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                        <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                        </div>`;
-      thirdGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                        <div class = "subtopics01">
-                                        <h3>00 Bienvenida Orientacion</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 - Desarrollo Profesional</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>03 Por qué aprender a programar</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Tu primer sitio</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Quiz</h3>
-                                        <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-variables">
-                                        <div class = "subtopics01">
-                                        <h3>00 Tipos de datos y operadores</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 Variables</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 Auto Aprendizaje MDN</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Comments</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics05">
-                                        <h3>04 Ejercicios guiados</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics06">
-                                        <h3>05 Quiz</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics07">
-                                        <h3>06 Ejercicios</h3>
-                                        <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        <div class = "subtopics-ux">
-                                        <div class = "subtopics01">
-                                        <h3>00 Equipos de desarrollo</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics02">
-                                        <h3>01 UX diseño</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics03">
-                                        <h3>02 UX vs UI</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                        </div>
-                                        <div class = "subtopics04">
-                                        <h3>03 Quiz</h3>
-                                        <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                        <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                        <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                        </div>
-                                        </div>
-                                        `;
-    }
-    thirdSubject.innerHTML = thirdGenerationSubjects;
-    thirdSubtopic.innerHTML = thirdGenerationSubtopics;
-
-    // Fourth Generation Printed Stats
-    let fourthGenerationSubjects = '';
-    let subjects1 = [];
-    let fourthGenerationSubtopics = '';
-
-    // Showing Subject Stats for each subject for each student
-    for (let i = 0; i < stgoFourthStudents.length; i++) {
-      let stgoSubjects = stgoFourthStudents[i].progreso.temas;
-      subjects1 = stgoSubjects;     
-      fourthGenerationSubjects += ` <div class = "subjects01">
-                                            <h2>01 Introducción a Programación</h2>
-                                            <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                            <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                            <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                            <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                            <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                            </div>
-                                            <div class = "subjects02">
-                                            <h2>02 Variables y tipos de datos</h2>
-                                            <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                            <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                            <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                            <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                            <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                            </div>
-                                            <div class = "subjects03">
-                                            <h2>03 UX</h2>
-                                            <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                            <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                            <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                            <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                            <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                            </div>`;
-      fourthGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                            <div class = "subtopics01">
-                                            <h3>00 Bienvenida Orientacion</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics02">
-                                            <h3>01 - Desarrollo Profesional</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics03">
-                                            <h3>03 Por qué aprender a programar</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics04">
-                                            <h3>03 Tu primer sitio</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics05">
-                                            <h3>04 Quiz</h3>
-                                            <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                            </div>
-                                            </div>
-                                            <div class = "subtopics-variables">
-                                            <div class = "subtopics01">
-                                            <h3>00 Tipos de datos y operadores</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics02">
-                                            <h3>01 Variables</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics03">
-                                            <h3>02 Auto Aprendizaje MDN</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics04">
-                                            <h3>03 Comments</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics05">
-                                            <h3>04 Ejercicios guiados</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics06">
-                                            <h3>05 Quiz</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics07">
-                                            <h3>06 Ejercicios</h3>
-                                            <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                            </div>
-                                            </div>
-                                            <div class = "subtopics-ux">
-                                            <div class = "subtopics01">
-                                            <h3>00 Equipos de desarrollo</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics02">
-                                            <h3>01 UX diseño</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics03">
-                                            <h3>02 UX vs UI</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                            </div>
-                                            <div class = "subtopics04">
-                                            <h3>03 Quiz</h3>
-                                            <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                            <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                            <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                            </div>
-                                            </div>
-                                            `;
-    }
-    fourthSubject.innerHTML = fourthGenerationSubjects;
-    fourthSubtopic.innerHTML = fourthGenerationSubtopics;
-
-    // Fifth Generation Printed Stats
-    let fifthGenerationSubjects = '';
-    let subjects2 = [];
-    let fifthGenerationSubtopics = '';
-    
-    // Showing Subject Stats for each subject for each student
-    for (let i = 0; i < stgoFifthStudents.length; i++) {
-      let stgoSubjects = stgoFifthStudents[i].progreso.temas;
-      subjects2 = stgoSubjects;     
-      fifthGenerationSubjects += ` <div class = "subjects01">
-                                                <h2>01 Introducción a Programación</h2>
-                                                <p>Duracion del Tema: ${subjects['01-Introduccion-a-programacion'].duracionTema}</p>
-                                                <p>Duracion tema Completado: ${subjects['01-Introduccion-a-programacion'].duracionTemaCompletado}</p>
-                                                <p>Porcentaje Completado: ${subjects['01-Introduccion-a-programacion'].porcentajeCompletado}</p>
-                                                <p>Subtemas Completados : ${subjects['01-Introduccion-a-programacion'].subtemasCompletados}</p>
-                                                <p>Subtemas Totales : ${subjects['01-Introduccion-a-programacion'].subtemasTotales} </p>
-                                                </div>
-                                                <div class = "subjects02">
-                                                <h2>02 Variables y tipos de datos</h2>
-                                                <p>Duracion del Tema: ${subjects['02-Variables-y-tipo-de-datos'].duracionTema}</p>
-                                                <p>Duracion tema Completado: ${subjects['02-Variables-y-tipo-de-datos'].duracionTemaCompletado}</p>
-                                                <p>Porcentaje Completado: ${subjects['02-Variables-y-tipo-de-datos'].porcentajeCompletado}</p>
-                                                <p>Subtemas Completados : ${subjects['02-Variables-y-tipo-de-datos'].subtemasCompletados}</p>
-                                                <p>Subtemas Totales : ${subjects['02-Variables-y-tipo-de-datos'].subtemasTotales} </p>
-                                                </div>
-                                                <div class = "subjects03">
-                                                <h2>03 UX</h2>
-                                                <p>Duracion del Tema: ${subjects['03-UX'].duracionTema}</p>
-                                                <p>Duracion tema Completado: ${subjects['03-UX'].duracionTemaCompletado}</p>
-                                                <p>Porcentaje Completado: ${subjects['03-UX'].porcentajeCompletado}</p>
-                                                <p>Subtemas Completados : ${subjects['03-UX'].subtemasCompletados}</p>
-                                                <p>Subtemas Totales : ${subjects['03-UX'].subtemasTotales} </p>
-                                                </div>`;
-      fifthGenerationSubtopics += ` <div class = "subtopics-introduccion">
-                                                <div class = "subtopics01">
-                                                <h3>00 Bienvenida Orientacion</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['00-bienvenida-orientacion'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics02">
-                                                <h3>01 - Desarrollo Profesional</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['01-desarrollo-profesional'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics03">
-                                                <h3>03 Por qué aprender a programar</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['02-por-que-aprender-a-programar'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics04">
-                                                <h3>03 Tu primer sitio</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['03-tu-primer-sitio'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics05">
-                                                <h3>04 Quiz</h3>
-                                                <p>Completado: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['01-Introduccion-a-programacion'].subtemas['04-quiz'].tipo}</p>
-                                                </div>
-                                                </div>
-                                                <div class = "subtopics-variables">
-                                                <div class = "subtopics01">
-                                                <h3>00 Tipos de datos y operadores</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['00-Tipos-de-datos-y-operadores'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics02">
-                                                <h3>01 Variables</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['01-variables'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics03">
-                                                <h3>02 Auto Aprendizaje MDN</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['02-auto-aprendizaje-MDN'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics04">
-                                                <h3>03 Comments</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['03-comments'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics05">
-                                                <h3>04 Ejercicios guiados</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['04-ejercicios-guiados'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics06">
-                                                <h3>05 Quiz</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['05-quiz'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics07">
-                                                <h3>06 Ejercicios</h3>
-                                                <p>Completado: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['02-Variables-y-tipo-de-datos'].subtemas['06-ejercicios'].tipo}</p>
-                                                </div>
-                                                </div>
-                                                <div class = "subtopics-ux">
-                                                <div class = "subtopics01">
-                                                <h3>00 Equipos de desarrollo</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['00-equipos-de-desarrollo'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics02">
-                                                <h3>01 UX diseño</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['01-ux-diseno'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['01-ux-diseno'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['01-ux-diseno'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics03">
-                                                <h3>02 UX vs UI</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['02-ux-vs-ui'].tipo}</p>
-                                                </div>
-                                                <div class = "subtopics04">
-                                                <h3>03 Quiz</h3>
-                                                <p>Completado: ${subjects['03-UX'].subtemas['03-quiz'].completado}</p>
-                                                <p>Duración Subtema: ${subjects['03-UX'].subtemas['03-quiz'].duracionSubtema}</p>
-                                                <p>Tipo: ${subjects['03-UX'].subtemas['03-quiz'].tipo}</p>
-                                                </div>
-                                                </div>
-                                                `;
-    }
-    fifthSubject.innerHTML = fourthGenerationSubjects;
-    fifthSubtopic.innerHTML = fourthGenerationSubtopics;
   });
 };
-
-// Calling fetch in data.js
-
-dashboard.computeStudentsStats();
-dashboard.studentsStatsLima();
