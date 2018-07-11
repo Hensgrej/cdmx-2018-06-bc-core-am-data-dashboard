@@ -1,85 +1,88 @@
-body {
-    margin: 0%;
-    padding: 0%;
-    width: 100%;
-    height: 100vh;
-    font-family: 'Open Sans', sans-serif;
-    letter-spacing: 6px;
-    font-size: 4vw;
-}
-
-h2 {
-    position: relative;
-    font-family: 'Bitter', serif;
-    letter-spacing: 6px;
-    font-size: 4vw;
-    color: white;
-    text-align: center;
-    background-color: rgba(255, 229, 33);
-    margin: 0%
-}
-
-#logo {
-    position: relative;
-    left: 25%;
-    margin: auto;
-    width: 50vw;
-    padding: 0%;
-    margin: 0%;
-}
-
-#triangulo {
-    margin-right: auto;
-    width: 8%;
-    position: relative;
-    left: 40%;
-    padding: 0%;
-    margin: 0%;
-}
-
-#corchetes {
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-    padding: 0%;
-    margin: 0%;
-}
-
-p {
-    font-family: 'Open Sans';
-    letter-spacing: 0.3px;
-    color: #8190A5;
-    text-align: center;
-    font-size: 2vw;
-}
-
-input {
-    width: 30vw;
-    height: 5vw;
-    position:relative;
-    left: 20%;
-    font-family: 'Open Sans';
-    align-items: center;
-    color:#8190A5;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 2.5vw;
-}
-
-#btnLogin {
-    width: 20vw;
-    height: 5vw;
-    position: relative;
-    left: 41%;
-    font-family: 'Open Sans';
-    text-align: center;
-    background-color: rgba(86, 245, 154);
-    color: white;
-    border-radius: 4px;
-    font-size: 2.5vw;
-}
-
-#lima,
+    body {
+        margin: 0%;
+        padding: 0%;
+        width: 100%;
+        height: 100vh;
+        font-family: 'Open Sans', sans-serif;
+        letter-spacing: 6px;
+        font-size: 4vw;
+    }
+    
+    h2 {
+        position: relative;
+        font-family: 'Bitter', serif;
+        letter-spacing: 6px;
+        font-size: 4vw;
+        color: white;
+        text-align: center;
+        background-color: rgba(255, 229, 33);
+        margin: 0%
+    }
+    
+    #logo {
+        position: relative;
+        left: 25%;
+        margin: auto;
+        width: 50vw;
+        padding: 0%;
+        margin: 0%;
+    }
+    
+    #triangulo {
+        margin-right: auto;
+        width: 8%;
+        position: relative;
+        left: 40%;
+        padding: 0%;
+        margin: 0%;
+    }
+    
+    .line {
+        width: 100%;
+        background-color: rgba(255, 229, 33);
+        height: 4vw;
+    }
+    
+    #corchetes {
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+    
+    p {
+        font-family: 'Open Sans';
+        letter-spacing: 0.3px;
+        color: #8190A5;
+        text-align: center;
+        font-size: 2vw;
+    }
+    
+    input {
+        width: 30vw;
+        height: 5vw;
+        position: relative;
+        left: 20%;
+        font-family: 'Open Sans';
+        align-items: center;
+        color: #8190A5;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 2.5vw;
+    }
+    
+    #btnLogin {
+        width: 20vw;
+        height: 5vw;
+        position: relative;
+        left: 41%;
+        font-family: 'Open Sans';
+        text-align: center;
+        background-color: rgba(86, 245, 154);
+        color: white;
+        border-radius: 4px;
+        font-size: 2.5vw;
+    }
+    /*#lima,
 #mexico,
 #chile {
     left: 35%;
@@ -92,57 +95,55 @@ input {
     color: white;
     font-size: 2.5vw;
 }
-
-#btnThirdLima,
-#btnFourthLima,
-#btnFifthLima,
-#btnThirdMexico,
-#btnFourthMexico,
-#btnFifthMexico,
-#btnThirdChile,
-#btnFourthChile,
-#btnFifthChile {
-    left: 30%;
-    width: 25vw;
-    height: 10vw;
-    margin: 40px;
-    font-family: 'Open Sans';
-    text-align: center;
-    color: white;
-    background-color: rgba(86, 245, 154);
-    border-radius: 4px;
-    font-size: 2.5vw;
-}
-
-.lima-third-name {
-    text-align: center;
-}
-
-.campuses-generations-table {
-    position: relative;
-    width: 50%;
-    left: 35%;
-    width: 30vw;
-    height: 10vw;
-    font-family: 'Open Sans';
-    text-align: center;
-    background-color: rgba(86, 245, 154);
-    border-color: #8190A5;
-    border-radius: 4px;
-    font-size: 3vw;
-}
-
-.w3-container {
-    position: relative;
-    width: 20vw;
-    margin-top: 0.5vw;
-    left: 37% !important;
-}
-
-.container-fluid {
-    padding: 5px;
-}
-
-.w3-container {
-    box-sizing: inherit;
-}
+*/
+    
+    #limaFourthNames p {
+        font-size: 0.5vw;
+        float: left;
+    }
+    
+    button {
+        left: 50%;
+        width: 15vw;
+        height: 5vw;
+        margin: 40px;
+        font-family: 'Open Sans';
+        text-align: center;
+        color: white;
+        background-color: rgba(86, 245, 154);
+        border-radius: 3px;
+        font-size: 2vw;
+    }
+    
+    .lima-third-name {
+        text-align: center;
+    }
+    
+    .campuses-generations-table {
+        position: relative;
+        width: 50%;
+        left: 35%;
+        width: 30vw;
+        height: 10vw;
+        font-family: 'Open Sans';
+        text-align: center;
+        background-color: rgba(86, 245, 154);
+        border-color: #8190A5;
+        border-radius: 4px;
+        font-size: 3vw;
+    }
+    
+    .w3-container {
+        position: relative;
+        width: 20vw;
+        margin-top: 0.5vw;
+        left: 37% !important;
+    }
+    
+    .container-fluid {
+        padding: 5px;
+    }
+    
+    .w3-container {
+        box-sizing: inherit;
+    }
