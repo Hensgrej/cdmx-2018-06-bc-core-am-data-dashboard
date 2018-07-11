@@ -2,6 +2,7 @@ const laboratoria = 'https://api.myjson.com/bins/13lpdy';
 const login = document.getElementById('login');
 const btnLogin = document.getElementById('btnLogin');
 const btnsCampus = document.getElementById('btnsCampus');
+// Lima HTML elements
 const btnLima = document.getElementById('btnLima');
 const btnLimaThird = document.getElementById('btnLimaThird');
 const btnLimaFourth = document.getElementById('btnLimaFourth');
@@ -19,6 +20,24 @@ const thirdLimaCompletedPercentage = document.getElementById('limaCompletedPerce
 const limaDurationPercentageThird = document.getElementById('limaDurationPercentageThird');
 const fifthLimaCompletedPercentage = document.getElementById('limaCompletedPercentageFifth');
 const limaDurationPercentageFifth = document.getElementById('limaDurationPercentageFifth');
+// Mexico HTML elements
+const btnMexico = document.getElementById('btnMexico');
+const btnMexicoThird = document.getElementById('btnMexicoThird');
+const btnMexicoFourth = document.getElementById('btnMexicoFourth');
+const btnMexicoFifth = document.getElementById('btnMexicoFifth');
+const mexicoThirdInfo = document.getElementById('mexicoThirdInfo');
+const mexicoFourthInfo = document.getElementById('mexicoFourthInfo');
+const mexicoFifthInfo = document.getElementById('mexicoFifthInfo');
+const articleMexico = document.getElementById('mexico');
+const mexicoThirdNames = document.getElementById('mexicoNamesThird');
+const mexicoFourthNames = document.getElementById('mexicoNamesFourth');
+const mexicoFifthNames = document.getElementById('mexicoNamesFifth');
+const fourthMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageFourth');
+const mexicoDurationPercentageFourth = document.getElementById('mexicoDurationPercentageFourth');
+const thirdMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageThird');
+const mexicoDurationPercentageThird = document.getElementById('mexicoDurationPercentageThird');
+const fifthMexicoCompletedPercentage = document.getElementById('mexicoCompletedPercentageFifth');
+const mexicoDurationPercentageFifth = document.getElementById('mexicoDurationPercentageFifth');
 
 window.dashboardData = {
     dataLaboratoria: (laboratoria) => {
@@ -45,7 +64,8 @@ window.dashboardData = {
 
 dashboardData.dataLaboratoria(laboratoria);
 btnsCampus.style.display = 'none';
-lima.style.display = 'none'
+lima.style.display = 'none';
+mexico.style.display = 'none';
 const printStudents = (dataValues) => {
     btnLima.addEventListener('click', () => {
         btnMexico.style.display = 'none';
@@ -109,6 +129,72 @@ const printStudents = (dataValues) => {
                 limaFifthNames.innerHTML = fifthLimaStudents;
                 fifthLimaCompletedPercentage.innerHTML = fifthLimaPercentages;
                 limaDurationPercentageFifth.innerHTML = fifthLimaDuration;
+            })
+        }
+    })
+    btnMexico.addEventListener('click', () => {
+        btnLima.style.display = 'none';
+        btnStgo.style.display = 'none';
+        btnMexico.style.display = 'block';
+        mexico.style.display = 'block';
+        let thirdMexico = dataValues[0].generacion.tercera.estudiantes;
+        let thirdMexicoStudents = '';
+        let thirdMexicoPercentages = '';
+        let thirdMexicoDuration = '';
+        for (let i = 0; i < thirdMexico.length; i++) {
+            let thirdMexicoNames = thirdMexico[i].nombre;
+            let thirdMexicoCompletedPercent = thirdMexico[i].progreso.porcentajeCompletado;
+            let thirdMexicoProgramDuration = thirdMexico[i].progreso.duracionPrograma;
+            btnMexicoThird.addEventListener('click', () => {
+                mexicoThirdInfo.style.display = 'block';
+                btnMexicoFourth.style.display = 'none';
+                btnMexicoFifth.style.display = 'none';
+                thirdMexicoStudents += `<p>${thirdMexicoNames}</p>`;
+                thirdMexicoPercentages += `<p>${thirdMexicoCompletedPercent}%</p>`;
+                thirdMexicoDuration += `<p>${thirdMexicoProgramDuration}</p>`;
+                mexicoThirdNames.innerHTML = thirdMexicoStudents;
+                thirdMexicoCompletedPercentage.innerHTML = thirdMexicoPercentages;
+                mexicoDurationPercentageThird.innerHTML = thirdMexicoDuration;
+            })
+        }
+        let fourthMexico = dataValues[0].generacion.cuarta.estudiantes;
+        let fourthMexicoStudents = '';
+        let fourthMexicoPercentages = '';
+        let fourthMexicoDuration = '';
+        for (let i = 0; i < fourthMexico.length; i++) {
+            let fourthMexicoNames = fourthMexico[i].nombre;
+            let fourthMexicoCompletedPercent = fourthMexico[i].progreso.porcentajeCompletado;
+            let fourthMexicoProgramDuration = fourthMexico[i].progreso.duracionPrograma;
+            btnMexicoFourth.addEventListener('click', () => {
+                mexicoFourthInfo.style.display = 'block';
+                btnMexicoThird.style.display = 'none';
+                btnMexicoFifth.style.display = 'none';
+                fourthMexicoStudents += `<p>${fourthMexicoNames}</p>`;
+                fourthMexicoPercentages += `<p>${fourthMexicoCompletedPercent}%</p>`;
+                fourthMexicoDuration += `<p>${fourthMexicoProgramDuration}</p>`;
+                mexicoFourthNames.innerHTML = fourthMexicoStudents;
+                fourthMexicoCompletedPercentage.innerHTML = fourthMexicoPercentages;
+                mexicoDurationPercentageFourth.innerHTML = fourthMexicoDuration;
+            })
+        }
+        let fifthMexico = dataValues[0].generacion.quinta.estudiantes;
+        let fifthMexicoStudents = '';
+        let fifthMexicoPercentages = '';
+        let fifthMexicoDuration = '';
+        for (let i = 0; i < fifthMexico.length; i++) {
+            let fifthMexicoNames = fifthMexico[i].nombre;
+            let fifthMexicoCompletedPercent = fifthMexico[i].progreso.porcentajeCompletado;
+            let fifthMexicoProgramDuration = fifthMexico[i].progreso.duracionPrograma;
+            btnMexicoFifth.addEventListener('click', () => {
+                mexicoFifthInfo.style.display = 'block';
+                btnMexicoFourth.style.display = 'none';
+                btnMexicoThird.style.display = 'none';
+                fifthMexicoStudents += `<p>${fifthMexicoNames}</p>`;
+                fifthMexicoPercentages += `<p>${fifthMexicoCompletedPercent}%</p>`;
+                fifthMexicoDuration += `<p>${fifthMexicoProgramDuration}</p>`;
+                mexicoFifthNames.innerHTML = fifthMexicoStudents;
+                fifthMexicoCompletedPercentage.innerHTML = fifthMexicoPercentages;
+                mexicoDurationPercentageFifth.innerHTML = fifthMexicoDuration;
             })
         }
     })
