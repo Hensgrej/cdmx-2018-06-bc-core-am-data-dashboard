@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Materialize CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!-- Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Open+Sans" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link href="style.css" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+   <header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center"><img src="https://cdn-images-1.medium.com/fit/c/90/90/1*mlFkczi1KC2fxq4pfPxWHQ.png"></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons menu">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+
+                <li><a class="dropdown-trigger btn" href="#" data-target="dropdown1"> Sedes </a>
+                </li>
+                <ul id="dropdown1" class="dropdown-content">
+                    <li><a class="sedes" id="campus-mexico" href="#!">México</a></li>
+                    <li><a class="sedes" id="campus-lima" href="#!">Lima</a></li>
+                    <li><a class="sedes" id="campus-santiago" href="#!">Santiago</a></li>
+                </ul>
+                <li><a href="collapsible.html">Repositorio</a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <div class="row color-block">
+            <div class="col s7 m10 l10">
+                <h3>Data Dashboard</h3>
+            </div>
+        </div>
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+    </ul>
+
+    <div class="container valign-wrapper">
+    <div class="row">
+            <h2 class="col s12 m12 l12 center">Data Dashboard</h2>
+            <img class="col s12 m12 l12 center background-image" src="https://i.imgur.com/2SxBImS.png">
+        </div>
+    </div>
+   </header>
+   <main>
+    <div class="container valign-wrapper login">
+        <div class="row">
+        <form class="col s12 m12 l12">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="icon_prefix" type="text" class="validate">
+              <label for="icon_prefix">Email</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">vpn_key</i>
+              <input id="icon_vpn_key" type="password" class="validate">
+              <label for="icon_vpn_key">Contraseña</label>
+            </div>
+          </div>
+          
+          <div class="row">
+          <a class="col s6 m4 l4 waves-effect waves-light btn"><i class="material-icons left">send</i>Entrar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+   </main>
+   <footer class="page-footer">
+        <div class="footer-copyright">
+          <div class="container">
+                Made with ❤ by Florencia Silva Olivera
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+   </footer>
+          
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="main.js"></script>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
+
+<!-- Mexico's Info 
+    <div class="container" id="mexico-info">
+            <h3>México</h3>
+            <button class="mexico-generations" id="third-generation-mexico">Tercera</button>
+            <button class="mexico-generations" id="fourth-generation-mexico">Cuarta</button>
+            <button class="mexico-generations" id="fifth-generation-mexico">Quinta</button>
+        </div>
+        Lima's Info 
+        <div class="container" id="lima-info">
+            <h3>Lima</h3>
+            <button id="third-generation-lima">Tercera</button>
+            <button id="fourth-generation-lima">Cuarta</button>
+            <button id="fifth-generation-lima">Quinta</button>
+        </div>
+        
+        <div class="container" id="santiago-info">
+            <h3>Santiago</h3>
+            <button id="third-generation-santiago">Tercera</button>
+            <button id="fourth-generation-santiago">Cuarta</button>
+            <button id="fifth-generation-santiago">Quinta</button>
+        </div> -->
