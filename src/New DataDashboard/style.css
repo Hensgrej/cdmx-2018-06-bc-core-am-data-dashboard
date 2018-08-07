@@ -39,19 +39,22 @@ a.dropdown-trigger.btn {
     background-color: #56f89a;
 }
 
-header {
-    margin-bottom:25%;
-}
+
 img.col.s12.m12.l12.background-image {
     position: relative;
     z-index: -1;
-    width: 35%;
+    width: 25%;
     margin-top: 5%;
-    left: 25%;
+    left: 35%;
 }
 
+<<<<<<< HEAD:src/New DataDashboard/style.css
 i {
     color: #ffe521;
+=======
+i { 
+    color:#56f89a;
+>>>>>>> 4743a115237bcb1e6c6f83f0ea96da15cce66976:New DataDashboard/style.css
 }
 .material-icons.menu {
     color:white;
@@ -62,8 +65,7 @@ i {
 
 .col.s6.m4.l4.waves-effect.waves-light.btn {
     margin-left: 33%;
-    background-color: #ffe521;
-}
+    background-color: #56f89a;}
 
 h2 {
     z-index: 1;
@@ -75,4 +77,10 @@ h2 {
 
 footer.page-footer {
     background-color: #ffe521;
+}
+
+form {
+    margin-top: 10%;
+    position: relative;
+    z-index: 2;
 }
