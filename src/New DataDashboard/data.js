@@ -227,10 +227,10 @@ window.dashboardCompute = {
       students.stats.topics[0]['03-UX'].subtopics['02-ux-vs-ui'].completedPercentage.push(Math.round(stats[i].temas['03-UX'].subtemas['02-ux-vs-ui'].duracionSubtema * 100) / topicDuration03);
       students.stats.topics[0]['03-UX'].subtopics['03-quiz'].completedPercentage.push(Math.round(stats[i].temas['03-UX'].subtemas['03-quiz'].duracionSubtema * 100) / topicDuration03);
     }
+    console.log(students);
     return students;
   }
 };
-
 
 window.dashboardPrint = {
   computeGenerationStats: (dataValues) => {
